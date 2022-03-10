@@ -1,0 +1,653 @@
+2022-03-01 11:54:51 [INFO]	
+------------Environment Information-------------
+platform: Linux-4.4.0-150-generic-x86_64-with-debian-stretch-sid
+Python: 3.7.4 (default, Aug 13 2019, 20:35:49) [GCC 7.3.0]
+Paddle compiled with cuda: True
+NVCC: Cuda compilation tools, release 10.1, V10.1.243
+cudnn: 7.6
+GPUs used: 1
+CUDA_VISIBLE_DEVICES: None
+GPU: ['GPU 0: Tesla V100-SXM2-32GB']
+GCC: gcc (Ubuntu 7.5.0-3ubuntu1~16.04) 7.5.0
+PaddleSeg: 2.4.0
+PaddlePaddle: 2.2.2
+OpenCV: 4.1.1
+------------------------------------------------
+2022-03-01 11:54:51 [INFO]	
+---------------Config Information---------------
+batch_size: 64
+export:
+  transforms:
+  - target_size:
+    - 512
+    - 512
+    type: Resize
+  - type: Normalize
+iters: 30000
+loss:
+  coef:
+  - 1
+  types:
+  - ignore_index: 255
+    type: CrossEntropyLoss
+lr_scheduler:
+  factor: 0.4
+  learning_rate: 0.04
+  mode: min
+  patience: 1500
+  threshold_mode: rel
+  type: ReduceOnPlateau
+  verbose: true
+model:
+  align_corners: false
+  num_classes: 2
+  pretrained: pretrained_model/pphumanseg_lite_portrait_398x224/model.pdparams
+  type: PPHumanSegLite
+optimizer:
+  momentum: 0.9
+  type: sgd
+  weight_decay: 0.0005
+train_dataset:
+  dataset_root: humanseg
+  mode: train
+  num_classes: 2
+  train_path: humanseg/train_list.txt
+  transforms:
+  - target_size:
+    - 512
+    - 512
+    type: Resize
+  - type: RandomHorizontalFlip
+  - brightness_range: 0.4
+    contrast_range: 0.4
+    saturation_range: 0.4
+    type: RandomDistort
+  - type: Normalize
+  type: Dataset
+val_dataset:
+  dataset_root: humanseg
+  mode: val
+  num_classes: 2
+  transforms:
+  - target_size:
+    - 512
+    - 512
+    type: Resize
+  - type: Normalize
+  type: Dataset
+  val_path: humanseg/val_list.txt
+------------------------------------------------
+W0301 11:54:51.210299  2230 device_context.cc:447] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 10.1, Runtime API Version: 10.1
+W0301 11:54:51.210347  2230 device_context.cc:465] device: 0, cuDNN Version: 7.6.
+2022-03-01 11:54:55 [INFO]	Loading pretrained model from pretrained_model/pphumanseg_lite_portrait_398x224/model.pdparams
+2022-03-01 11:54:55 [INFO]	There are 340/340 variables loaded into PPHumanSegLite.
+/opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/nn/layer/norm.py:653: UserWarning: When training, we now always track global mean and variance.
+  "When training, we now always track global mean and variance.")
+/opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/math_op_patch.py:253: UserWarning: The dtype of left and right variables are not the same, left dtype is paddle.float32, but right dtype is paddle.int64, the right dtype will convert to paddle.float32
+  format(lhs_dtype, rhs_dtype, lhs_dtype))
+2022-03-01 12:00:46 [INFO]	[TRAIN] epoch: 1, iter: 50/30000, loss: 0.3356, lr: 0.040000, batch_cost: 7.0163, reader_cost: 6.67785, ips: 9.1216 samples/sec | ETA 58:22:19
+2022-03-01 12:06:37 [INFO]	[TRAIN] epoch: 2, iter: 100/30000, loss: 0.2565, lr: 0.040000, batch_cost: 7.0164, reader_cost: 6.67835, ips: 9.1215 samples/sec | ETA 58:16:31
+2022-03-01 12:12:23 [INFO]	[TRAIN] epoch: 3, iter: 150/30000, loss: 0.2385, lr: 0.040000, batch_cost: 6.9172, reader_cost: 6.57917, ips: 9.2523 samples/sec | ETA 57:21:18
+2022-03-01 12:18:14 [INFO]	[TRAIN] epoch: 3, iter: 200/30000, loss: 0.2219, lr: 0.040000, batch_cost: 7.0147, reader_cost: 6.67631, ips: 9.1237 samples/sec | ETA 58:03:56
+2022-03-01 12:23:57 [INFO]	[TRAIN] epoch: 4, iter: 250/30000, loss: 0.2191, lr: 0.040000, batch_cost: 6.8628, reader_cost: 6.52450, ips: 9.3257 samples/sec | ETA 56:42:47
+2022-03-01 12:29:27 [INFO]	[TRAIN] epoch: 5, iter: 300/30000, loss: 0.2033, lr: 0.040000, batch_cost: 6.6030, reader_cost: 6.26569, ips: 9.6925 samples/sec | ETA 54:28:30
+2022-03-01 12:34:54 [INFO]	[TRAIN] epoch: 5, iter: 350/30000, loss: 0.1979, lr: 0.040000, batch_cost: 6.5527, reader_cost: 6.21536, ips: 9.7670 samples/sec | ETA 53:58:07
+2022-03-01 12:40:38 [INFO]	[TRAIN] epoch: 6, iter: 400/30000, loss: 0.1968, lr: 0.040000, batch_cost: 6.8623, reader_cost: 6.52467, ips: 9.3263 samples/sec | ETA 56:25:25
+2022-03-01 12:46:09 [INFO]	[TRAIN] epoch: 7, iter: 450/30000, loss: 0.1929, lr: 0.040000, batch_cost: 6.6285, reader_cost: 6.29104, ips: 9.6553 samples/sec | ETA 54:24:32
+2022-03-01 12:51:57 [INFO]	[TRAIN] epoch: 7, iter: 500/30000, loss: 0.1840, lr: 0.040000, batch_cost: 6.9638, reader_cost: 6.62618, ips: 9.1904 samples/sec | ETA 57:03:51
+2022-03-01 12:57:27 [INFO]	[TRAIN] epoch: 8, iter: 550/30000, loss: 0.1889, lr: 0.040000, batch_cost: 6.5917, reader_cost: 6.25348, ips: 9.7092 samples/sec | ETA 53:55:24
+2022-03-01 13:03:22 [INFO]	[TRAIN] epoch: 9, iter: 600/30000, loss: 0.1787, lr: 0.040000, batch_cost: 7.1123, reader_cost: 6.77331, ips: 8.9985 samples/sec | ETA 58:05:00
+2022-03-01 13:09:03 [INFO]	[TRAIN] epoch: 9, iter: 650/30000, loss: 0.1778, lr: 0.040000, batch_cost: 6.8139, reader_cost: 6.47494, ips: 9.3926 samples/sec | ETA 55:33:07
+2022-03-01 13:14:48 [INFO]	[TRAIN] epoch: 10, iter: 700/30000, loss: 0.1801, lr: 0.040000, batch_cost: 6.9059, reader_cost: 6.56774, ips: 9.2675 samples/sec | ETA 56:12:22
+2022-03-01 13:20:21 [INFO]	[TRAIN] epoch: 11, iter: 750/30000, loss: 0.1696, lr: 0.040000, batch_cost: 6.6442, reader_cost: 6.30683, ips: 9.6324 samples/sec | ETA 53:59:03
+2022-03-01 13:25:59 [INFO]	[TRAIN] epoch: 11, iter: 800/30000, loss: 0.1718, lr: 0.040000, batch_cost: 6.7719, reader_cost: 6.43451, ips: 9.4508 samples/sec | ETA 54:55:38
+2022-03-01 13:31:40 [INFO]	[TRAIN] epoch: 12, iter: 850/30000, loss: 0.1753, lr: 0.040000, batch_cost: 6.8196, reader_cost: 6.48239, ips: 9.3848 samples/sec | ETA 55:13:10
+2022-03-01 13:37:25 [INFO]	[TRAIN] epoch: 13, iter: 900/30000, loss: 0.1622, lr: 0.040000, batch_cost: 6.8889, reader_cost: 6.55157, ips: 9.2903 samples/sec | ETA 55:41:07
+2022-03-01 13:42:55 [INFO]	[TRAIN] epoch: 13, iter: 950/30000, loss: 0.1661, lr: 0.040000, batch_cost: 6.6028, reader_cost: 6.26556, ips: 9.6928 samples/sec | ETA 53:16:51
+2022-03-01 13:48:36 [INFO]	[TRAIN] epoch: 14, iter: 1000/30000, loss: 0.1635, lr: 0.040000, batch_cost: 6.8291, reader_cost: 6.49140, ips: 9.3716 samples/sec | ETA 55:00:45
+2022-03-01 13:48:36 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 82s 86ms/step - batch_cost: 0.0858 - reader cost: 0.064
+2022-03-01 13:49:58 [INFO]	[EVAL] #Images: 949 mIoU: 0.8002 Acc: 0.9215 Kappa: 0.7706 Dice: 0.8853
+2022-03-01 13:49:58 [INFO]	[EVAL] Class IoU: 
+[0.9043 0.6961]
+2022-03-01 13:49:58 [INFO]	[EVAL] Class Acc: 
+[0.9503 0.8191]
+2022-03-01 13:49:58 [INFO]	[EVAL] The model with the best validation mIoU (0.8002) was saved at iter 1000.
+2022-03-01 13:55:02 [INFO]	[TRAIN] epoch: 15, iter: 1050/30000, loss: 0.1651, lr: 0.040000, batch_cost: 6.0858, reader_cost: 5.74934, ips: 10.5163 samples/sec | ETA 48:56:24
+2022-03-01 14:00:44 [INFO]	[TRAIN] epoch: 15, iter: 1100/30000, loss: 0.1652, lr: 0.040000, batch_cost: 6.8281, reader_cost: 6.49123, ips: 9.3731 samples/sec | ETA 54:48:50
+2022-03-01 14:06:23 [INFO]	[TRAIN] epoch: 16, iter: 1150/30000, loss: 0.1669, lr: 0.040000, batch_cost: 6.7930, reader_cost: 6.45731, ips: 9.4214 samples/sec | ETA 54:26:18
+2022-03-01 14:12:05 [INFO]	[TRAIN] epoch: 17, iter: 1200/30000, loss: 0.1575, lr: 0.040000, batch_cost: 6.8301, reader_cost: 6.49404, ips: 9.3702 samples/sec | ETA 54:38:27
+2022-03-01 14:17:37 [INFO]	[TRAIN] epoch: 17, iter: 1250/30000, loss: 0.1631, lr: 0.040000, batch_cost: 6.6516, reader_cost: 6.31548, ips: 9.6217 samples/sec | ETA 53:07:14
+2022-03-01 14:23:14 [INFO]	[TRAIN] epoch: 18, iter: 1300/30000, loss: 0.1531, lr: 0.040000, batch_cost: 6.7245, reader_cost: 6.38851, ips: 9.5175 samples/sec | ETA 53:36:32
+2022-03-01 14:29:29 [INFO]	[TRAIN] epoch: 19, iter: 1350/30000, loss: 0.1595, lr: 0.040000, batch_cost: 7.5113, reader_cost: 7.17518, ips: 8.5205 samples/sec | ETA 59:46:39
+2022-03-01 14:35:00 [INFO]	[TRAIN] epoch: 19, iter: 1400/30000, loss: 0.1562, lr: 0.040000, batch_cost: 6.6198, reader_cost: 6.28309, ips: 9.6679 samples/sec | ETA 52:35:26
+2022-03-01 14:40:34 [INFO]	[TRAIN] epoch: 20, iter: 1450/30000, loss: 0.1557, lr: 0.040000, batch_cost: 6.6679, reader_cost: 6.33088, ips: 9.5982 samples/sec | ETA 52:52:49
+2022-03-01 14:46:30 [INFO]	[TRAIN] epoch: 21, iter: 1500/30000, loss: 0.1524, lr: 0.040000, batch_cost: 7.1301, reader_cost: 6.78966, ips: 8.9760 samples/sec | ETA 56:26:48
+2022-03-01 14:52:15 [INFO]	[TRAIN] epoch: 21, iter: 1550/30000, loss: 0.1551, lr: 0.040000, batch_cost: 6.9071, reader_cost: 6.56543, ips: 9.2658 samples/sec | ETA 54:35:06
+2022-03-01 14:58:12 [INFO]	[TRAIN] epoch: 22, iter: 1600/30000, loss: 0.1538, lr: 0.040000, batch_cost: 7.1289, reader_cost: 6.79172, ips: 8.9776 samples/sec | ETA 56:14:20
+2022-03-01 15:03:45 [INFO]	[TRAIN] epoch: 23, iter: 1650/30000, loss: 0.1491, lr: 0.040000, batch_cost: 6.6691, reader_cost: 6.33178, ips: 9.5966 samples/sec | ETA 52:31:07
+2022-03-01 15:09:27 [INFO]	[TRAIN] epoch: 23, iter: 1700/30000, loss: 0.1508, lr: 0.040000, batch_cost: 6.8306, reader_cost: 6.49321, ips: 9.3696 samples/sec | ETA 53:41:45
+2022-03-01 15:15:05 [INFO]	[TRAIN] epoch: 24, iter: 1750/30000, loss: 0.1459, lr: 0.040000, batch_cost: 6.7645, reader_cost: 6.42745, ips: 9.4612 samples/sec | ETA 53:04:55
+2022-03-01 15:20:56 [INFO]	[TRAIN] epoch: 25, iter: 1800/30000, loss: 0.1554, lr: 0.040000, batch_cost: 7.0232, reader_cost: 6.68603, ips: 9.1126 samples/sec | ETA 55:00:54
+2022-03-01 15:26:46 [INFO]	[TRAIN] epoch: 25, iter: 1850/30000, loss: 0.1463, lr: 0.040000, batch_cost: 6.9936, reader_cost: 6.65673, ips: 9.1512 samples/sec | ETA 54:41:10
+2022-03-01 15:32:32 [INFO]	[TRAIN] epoch: 26, iter: 1900/30000, loss: 0.1457, lr: 0.040000, batch_cost: 6.9199, reader_cost: 6.58257, ips: 9.2487 samples/sec | ETA 54:00:48
+2022-03-01 15:38:20 [INFO]	[TRAIN] epoch: 27, iter: 1950/30000, loss: 0.1455, lr: 0.040000, batch_cost: 6.9618, reader_cost: 6.62396, ips: 9.1930 samples/sec | ETA 54:14:38
+2022-03-01 15:44:09 [INFO]	[TRAIN] epoch: 28, iter: 2000/30000, loss: 0.1456, lr: 0.040000, batch_cost: 6.9828, reader_cost: 6.64566, ips: 9.1654 samples/sec | ETA 54:18:37
+2022-03-01 15:44:09 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 81s 85ms/step - batch_cost: 0.0853 - reader cost: 0.063
+2022-03-01 15:45:30 [INFO]	[EVAL] #Images: 949 mIoU: 0.7975 Acc: 0.9179 Kappa: 0.7677 Dice: 0.8838
+2022-03-01 15:45:30 [INFO]	[EVAL] Class IoU: 
+[0.8988 0.6961]
+2022-03-01 15:45:30 [INFO]	[EVAL] Class Acc: 
+[0.9599 0.7847]
+2022-03-01 15:45:30 [INFO]	[EVAL] The model with the best validation mIoU (0.8002) was saved at iter 1000.
+2022-03-01 15:50:56 [INFO]	[TRAIN] epoch: 28, iter: 2050/30000, loss: 0.1415, lr: 0.040000, batch_cost: 6.5069, reader_cost: 6.16880, ips: 9.8358 samples/sec | ETA 50:31:06
+2022-03-01 15:56:36 [INFO]	[TRAIN] epoch: 29, iter: 2100/30000, loss: 0.1424, lr: 0.040000, batch_cost: 6.8119, reader_cost: 6.47482, ips: 9.3953 samples/sec | ETA 52:47:31
+2022-03-01 16:02:30 [INFO]	[TRAIN] epoch: 30, iter: 2150/30000, loss: 0.1407, lr: 0.040000, batch_cost: 7.0795, reader_cost: 6.74213, ips: 9.0401 samples/sec | ETA 54:46:05
+2022-03-01 16:08:27 [INFO]	[TRAIN] epoch: 30, iter: 2200/30000, loss: 0.1436, lr: 0.040000, batch_cost: 7.1357, reader_cost: 6.79774, ips: 8.9690 samples/sec | ETA 55:06:11
+2022-03-01 16:14:22 [INFO]	[TRAIN] epoch: 31, iter: 2250/30000, loss: 0.1430, lr: 0.040000, batch_cost: 7.0928, reader_cost: 6.75446, ips: 9.0232 samples/sec | ETA 54:40:25
+2022-03-01 16:20:19 [INFO]	[TRAIN] epoch: 32, iter: 2300/30000, loss: 0.1449, lr: 0.040000, batch_cost: 7.1440, reader_cost: 6.80599, ips: 8.9586 samples/sec | ETA 54:58:07
+2022-03-01 16:26:19 [INFO]	[TRAIN] epoch: 32, iter: 2350/30000, loss: 0.1446, lr: 0.040000, batch_cost: 7.2131, reader_cost: 6.87475, ips: 8.8728 samples/sec | ETA 55:24:01
+2022-03-01 16:32:10 [INFO]	[TRAIN] epoch: 33, iter: 2400/30000, loss: 0.1391, lr: 0.040000, batch_cost: 7.0206, reader_cost: 6.68250, ips: 9.1160 samples/sec | ETA 53:49:28
+2022-03-01 16:38:18 [INFO]	[TRAIN] epoch: 34, iter: 2450/30000, loss: 0.1371, lr: 0.040000, batch_cost: 7.3486, reader_cost: 7.01059, ips: 8.7091 samples/sec | ETA 56:14:15
+2022-03-01 16:44:04 [INFO]	[TRAIN] epoch: 34, iter: 2500/30000, loss: 0.1383, lr: 0.040000, batch_cost: 6.9195, reader_cost: 6.58122, ips: 9.2492 samples/sec | ETA 52:51:26
+2022-03-01 16:50:07 [INFO]	[TRAIN] epoch: 35, iter: 2550/30000, loss: 0.1357, lr: 0.040000, batch_cost: 7.2587, reader_cost: 6.92126, ips: 8.8170 samples/sec | ETA 55:20:51
+2022-03-01 16:55:49 [INFO]	[TRAIN] epoch: 36, iter: 2600/30000, loss: 0.1399, lr: 0.040000, batch_cost: 6.8337, reader_cost: 6.49703, ips: 9.3654 samples/sec | ETA 52:00:42
+2022-03-01 17:01:54 [INFO]	[TRAIN] epoch: 36, iter: 2650/30000, loss: 0.1370, lr: 0.040000, batch_cost: 7.3060, reader_cost: 6.96875, ips: 8.7599 samples/sec | ETA 55:30:20
+2022-03-01 17:07:52 [INFO]	[TRAIN] epoch: 37, iter: 2700/30000, loss: 0.1364, lr: 0.040000, batch_cost: 7.1649, reader_cost: 6.82681, ips: 8.9324 samples/sec | ETA 54:20:03
+2022-03-01 17:13:36 [INFO]	[TRAIN] epoch: 38, iter: 2750/30000, loss: 0.1370, lr: 0.040000, batch_cost: 6.8853, reader_cost: 6.54738, ips: 9.2951 samples/sec | ETA 52:07:05
+2022-03-01 17:19:32 [INFO]	[TRAIN] epoch: 38, iter: 2800/30000, loss: 0.1361, lr: 0.040000, batch_cost: 7.1131, reader_cost: 6.77607, ips: 8.9975 samples/sec | ETA 53:44:36
+2022-03-01 17:25:40 [INFO]	[TRAIN] epoch: 39, iter: 2850/30000, loss: 0.1304, lr: 0.040000, batch_cost: 7.3701, reader_cost: 7.03234, ips: 8.6837 samples/sec | ETA 55:34:58
+2022-03-01 17:31:16 [INFO]	[TRAIN] epoch: 40, iter: 2900/30000, loss: 0.1359, lr: 0.040000, batch_cost: 6.7131, reader_cost: 6.37512, ips: 9.5336 samples/sec | ETA 50:32:04
+2022-03-01 17:37:16 [INFO]	[TRAIN] epoch: 40, iter: 2950/30000, loss: 0.1323, lr: 0.040000, batch_cost: 7.1948, reader_cost: 6.85752, ips: 8.8953 samples/sec | ETA 54:03:39
+2022-03-01 17:43:15 [INFO]	[TRAIN] epoch: 41, iter: 3000/30000, loss: 0.1334, lr: 0.040000, batch_cost: 7.1781, reader_cost: 6.83910, ips: 8.9160 samples/sec | ETA 53:50:09
+2022-03-01 17:43:15 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 85s 90ms/step - batch_cost: 0.0896 - reader cost: 0.06
+2022-03-01 17:44:40 [INFO]	[EVAL] #Images: 949 mIoU: 0.8254 Acc: 0.9335 Kappa: 0.8030 Dice: 0.9015
+2022-03-01 17:44:40 [INFO]	[EVAL] Class IoU: 
+[0.9187 0.7321]
+2022-03-01 17:44:40 [INFO]	[EVAL] Class Acc: 
+[0.9533 0.8595]
+2022-03-01 17:44:40 [INFO]	[EVAL] The model with the best validation mIoU (0.8254) was saved at iter 3000.
+2022-03-03 08:53:57 [INFO]	[TRAIN] epoch: 42, iter: 3050/30000, loss: 0.1363, lr: 0.040000, batch_cost: 6.9828, reader_cost: 6.64516, ips: 9.1654 samples/sec | ETA 52:16:25
+2022-03-03 08:59:42 [INFO]	[TRAIN] epoch: 42, iter: 3100/30000, loss: 0.1329, lr: 0.040000, batch_cost: 6.9063, reader_cost: 6.57064, ips: 9.2669 samples/sec | ETA 51:36:19
+2022-03-03 09:05:27 [INFO]	[TRAIN] epoch: 43, iter: 3150/30000, loss: 0.1335, lr: 0.040000, batch_cost: 6.9011, reader_cost: 6.56510, ips: 9.2739 samples/sec | ETA 51:28:14
+2022-03-03 09:11:13 [INFO]	[TRAIN] epoch: 44, iter: 3200/30000, loss: 0.1293, lr: 0.040000, batch_cost: 6.9316, reader_cost: 6.59531, ips: 9.2331 samples/sec | ETA 51:36:06
+2022-03-03 09:16:55 [INFO]	[TRAIN] epoch: 44, iter: 3250/30000, loss: 0.1328, lr: 0.040000, batch_cost: 6.8225, reader_cost: 6.48750, ips: 9.3807 samples/sec | ETA 50:41:41
+2022-03-03 09:22:26 [INFO]	[TRAIN] epoch: 45, iter: 3300/30000, loss: 0.1327, lr: 0.040000, batch_cost: 6.6353, reader_cost: 6.30006, ips: 9.6454 samples/sec | ETA 49:12:42
+2022-03-03 09:27:57 [INFO]	[TRAIN] epoch: 46, iter: 3350/30000, loss: 0.1298, lr: 0.040000, batch_cost: 6.6176, reader_cost: 6.28205, ips: 9.6712 samples/sec | ETA 48:59:18
+2022-03-03 09:33:43 [INFO]	[TRAIN] epoch: 46, iter: 3400/30000, loss: 0.1322, lr: 0.040000, batch_cost: 6.9077, reader_cost: 6.57305, ips: 9.2650 samples/sec | ETA 51:02:25
+2022-03-03 09:39:16 [INFO]	[TRAIN] epoch: 47, iter: 3450/30000, loss: 0.1343, lr: 0.040000, batch_cost: 6.6598, reader_cost: 6.32449, ips: 9.6098 samples/sec | ETA 49:06:58
+2022-03-03 09:45:01 [INFO]	[TRAIN] epoch: 48, iter: 3500/30000, loss: 0.1240, lr: 0.040000, batch_cost: 6.9104, reader_cost: 6.57542, ips: 9.2614 samples/sec | ETA 50:52:05
+2022-03-03 09:50:28 [INFO]	[TRAIN] epoch: 48, iter: 3550/30000, loss: 0.1333, lr: 0.040000, batch_cost: 6.5390, reader_cost: 6.20356, ips: 9.7874 samples/sec | ETA 48:02:37
+2022-03-03 09:56:15 [INFO]	[TRAIN] epoch: 49, iter: 3600/30000, loss: 0.1262, lr: 0.040000, batch_cost: 6.9381, reader_cost: 6.60353, ips: 9.2244 samples/sec | ETA 50:52:46
+2022-03-03 10:01:55 [INFO]	[TRAIN] epoch: 50, iter: 3650/30000, loss: 0.1253, lr: 0.040000, batch_cost: 6.7924, reader_cost: 6.45676, ips: 9.4222 samples/sec | ETA 49:43:00
+2022-03-03 10:07:40 [INFO]	[TRAIN] epoch: 50, iter: 3700/30000, loss: 0.1306, lr: 0.040000, batch_cost: 6.9014, reader_cost: 6.56631, ips: 9.2735 samples/sec | ETA 50:25:07
+2022-03-03 10:13:20 [INFO]	[TRAIN] epoch: 51, iter: 3750/30000, loss: 0.1222, lr: 0.040000, batch_cost: 6.8094, reader_cost: 6.47384, ips: 9.3988 samples/sec | ETA 49:39:05
+2022-03-03 10:19:06 [INFO]	[TRAIN] epoch: 52, iter: 3800/30000, loss: 0.1267, lr: 0.040000, batch_cost: 6.9149, reader_cost: 6.57864, ips: 9.2553 samples/sec | ETA 50:19:31
+2022-03-03 10:24:51 [INFO]	[TRAIN] epoch: 53, iter: 3850/30000, loss: 0.1319, lr: 0.040000, batch_cost: 6.8920, reader_cost: 6.55654, ips: 9.2862 samples/sec | ETA 50:03:44
+2022-03-03 10:30:33 [INFO]	[TRAIN] epoch: 53, iter: 3900/30000, loss: 0.1247, lr: 0.040000, batch_cost: 6.8410, reader_cost: 6.50587, ips: 9.3554 samples/sec | ETA 49:35:48
+2022-03-03 10:35:58 [INFO]	[TRAIN] epoch: 54, iter: 3950/30000, loss: 0.1271, lr: 0.040000, batch_cost: 6.4996, reader_cost: 6.16443, ips: 9.8467 samples/sec | ETA 47:01:55
+2022-03-03 10:41:38 [INFO]	[TRAIN] epoch: 55, iter: 4000/30000, loss: 0.1246, lr: 0.040000, batch_cost: 6.8068, reader_cost: 6.47056, ips: 9.4023 samples/sec | ETA 49:09:37
+2022-03-03 10:41:38 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 80s 85ms/step - batch_cost: 0.0846 - reader cost: 0.061
+2022-03-03 10:42:58 [INFO]	[EVAL] #Images: 949 mIoU: 0.8362 Acc: 0.9372 Kappa: 0.8168 Dice: 0.9084
+2022-03-03 10:42:58 [INFO]	[EVAL] Class IoU: 
+[0.9226 0.7499]
+2022-03-03 10:42:58 [INFO]	[EVAL] Class Acc: 
+[0.9612 0.8526]
+2022-03-03 10:42:58 [INFO]	[EVAL] The model with the best validation mIoU (0.8362) was saved at iter 4000.
+2022-03-03 10:52:56 [INFO]	[TRAIN] epoch: 55, iter: 4050/30000, loss: 0.1278, lr: 0.040000, batch_cost: 6.9291, reader_cost: 6.59323, ips: 9.2364 samples/sec | ETA 49:56:50
+2022-03-03 10:58:37 [INFO]	[TRAIN] epoch: 56, iter: 4100/30000, loss: 0.1257, lr: 0.040000, batch_cost: 6.8229, reader_cost: 6.48811, ips: 9.3802 samples/sec | ETA 49:05:12
+2022-03-03 11:04:18 [INFO]	[TRAIN] epoch: 57, iter: 4150/30000, loss: 0.1273, lr: 0.040000, batch_cost: 6.8158, reader_cost: 6.48119, ips: 9.3900 samples/sec | ETA 48:56:27
+2022-03-03 11:10:01 [INFO]	[TRAIN] epoch: 57, iter: 4200/30000, loss: 0.1244, lr: 0.040000, batch_cost: 6.8667, reader_cost: 6.53152, ips: 9.3203 samples/sec | ETA 49:12:41
+2022-03-03 11:15:43 [INFO]	[TRAIN] epoch: 58, iter: 4250/30000, loss: 0.1245, lr: 0.040000, batch_cost: 6.8273, reader_cost: 6.49235, ips: 9.3741 samples/sec | ETA 48:50:02
+2022-03-03 11:21:16 [INFO]	[TRAIN] epoch: 59, iter: 4300/30000, loss: 0.1270, lr: 0.040000, batch_cost: 6.6712, reader_cost: 6.33632, ips: 9.5934 samples/sec | ETA 47:37:30
+2022-03-03 11:26:49 [INFO]	[TRAIN] epoch: 59, iter: 4350/30000, loss: 0.1230, lr: 0.040000, batch_cost: 6.6498, reader_cost: 6.31489, ips: 9.6243 samples/sec | ETA 47:22:48
+2022-03-03 11:32:40 [INFO]	[TRAIN] epoch: 60, iter: 4400/30000, loss: 0.1297, lr: 0.040000, batch_cost: 7.0191, reader_cost: 6.68350, ips: 9.1179 samples/sec | ETA 49:54:50
+2022-03-03 11:38:14 [INFO]	[TRAIN] epoch: 61, iter: 4450/30000, loss: 0.1265, lr: 0.040000, batch_cost: 6.6868, reader_cost: 6.35151, ips: 9.5711 samples/sec | ETA 47:27:28
+2022-03-03 11:44:04 [INFO]	[TRAIN] epoch: 61, iter: 4500/30000, loss: 0.1193, lr: 0.040000, batch_cost: 7.0057, reader_cost: 6.67097, ips: 9.1355 samples/sec | ETA 49:37:24
+2022-03-03 11:49:35 [INFO]	[TRAIN] epoch: 62, iter: 4550/30000, loss: 0.1269, lr: 0.040000, batch_cost: 6.6149, reader_cost: 6.28011, ips: 9.6751 samples/sec | ETA 46:45:50
+2022-03-03 11:55:23 [INFO]	[TRAIN] epoch: 63, iter: 4600/30000, loss: 0.1232, lr: 0.040000, batch_cost: 6.9565, reader_cost: 6.62165, ips: 9.2000 samples/sec | ETA 49:04:54
+2022-03-03 12:01:01 [INFO]	[TRAIN] epoch: 63, iter: 4650/30000, loss: 0.1213, lr: 0.040000, batch_cost: 6.7683, reader_cost: 6.43366, ips: 9.4559 samples/sec | ETA 47:39:36
+2022-03-03 12:06:49 [INFO]	[TRAIN] epoch: 64, iter: 4700/30000, loss: 0.1237, lr: 0.040000, batch_cost: 6.9549, reader_cost: 6.62018, ips: 9.2022 samples/sec | ETA 48:52:37
+2022-03-03 12:12:25 [INFO]	[TRAIN] epoch: 65, iter: 4750/30000, loss: 0.1161, lr: 0.040000, batch_cost: 6.7183, reader_cost: 6.38398, ips: 9.5263 samples/sec | ETA 47:07:15
+2022-03-03 12:18:10 [INFO]	[TRAIN] epoch: 65, iter: 4800/30000, loss: 0.1195, lr: 0.040000, batch_cost: 6.9029, reader_cost: 6.56827, ips: 9.2714 samples/sec | ETA 48:19:14
+2022-03-03 12:29:39 [INFO]	[TRAIN] epoch: 67, iter: 4900/30000, loss: 0.1172, lr: 0.040000, batch_cost: 6.8260, reader_cost: 6.49176, ips: 9.3759 samples/sec | ETA 47:35:32
+2022-03-03 12:35:08 [INFO]	[TRAIN] epoch: 67, iter: 4950/30000, loss: 0.1198, lr: 0.040000, batch_cost: 6.5796, reader_cost: 6.24486, ips: 9.7271 samples/sec | ETA 45:46:57
+2022-03-03 12:40:52 [INFO]	[TRAIN] epoch: 68, iter: 5000/30000, loss: 0.1189, lr: 0.040000, batch_cost: 6.8908, reader_cost: 6.55563, ips: 9.2878 samples/sec | ETA 47:51:09
+2022-03-03 12:40:52 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 80s 84ms/step - batch_cost: 0.0842 - reader cost: 0.061
+2022-03-03 12:42:12 [INFO]	[EVAL] #Images: 949 mIoU: 0.8200 Acc: 0.9294 Kappa: 0.7964 Dice: 0.8982
+2022-03-03 12:42:12 [INFO]	[EVAL] Class IoU: 
+[0.913  0.7269]
+2022-03-03 12:42:12 [INFO]	[EVAL] Class Acc: 
+[0.9604 0.8244]
+2022-03-03 12:42:12 [INFO]	[EVAL] The model with the best validation mIoU (0.8200) was saved at iter 5000.
+2022-03-03 13:26:52 [INFO]	[TRAIN] epoch: 69, iter: 5050/30000, loss: 0.1199, lr: 0.040000, batch_cost: 6.8834, reader_cost: 6.54649, ips: 9.2978 samples/sec | ETA 47:42:19
+2022-03-03 13:32:37 [INFO]	[TRAIN] epoch: 69, iter: 5100/30000, loss: 0.1178, lr: 0.040000, batch_cost: 6.8950, reader_cost: 6.55887, ips: 9.2821 samples/sec | ETA 47:41:25
+2022-03-03 13:38:20 [INFO]	[TRAIN] epoch: 70, iter: 5150/30000, loss: 0.1203, lr: 0.040000, batch_cost: 6.8509, reader_cost: 6.51651, ips: 9.3419 samples/sec | ETA 47:17:24
+2022-03-03 13:44:07 [INFO]	[TRAIN] epoch: 71, iter: 5200/30000, loss: 0.1183, lr: 0.040000, batch_cost: 6.9400, reader_cost: 6.60428, ips: 9.2219 samples/sec | ETA 47:48:32
+2022-03-03 13:49:54 [INFO]	[TRAIN] epoch: 71, iter: 5250/30000, loss: 0.1245, lr: 0.040000, batch_cost: 6.9504, reader_cost: 6.61484, ips: 9.2081 samples/sec | ETA 47:47:03
+2022-03-03 13:55:30 [INFO]	[TRAIN] epoch: 72, iter: 5300/30000, loss: 0.1204, lr: 0.040000, batch_cost: 6.7082, reader_cost: 6.37257, ips: 9.5406 samples/sec | ETA 46:01:31
+2022-03-03 14:01:07 [INFO]	[TRAIN] epoch: 73, iter: 5350/30000, loss: 0.1166, lr: 0.040000, batch_cost: 6.7518, reader_cost: 6.41624, ips: 9.4790 samples/sec | ETA 46:13:51
+2022-03-03 14:06:58 [INFO]	[TRAIN] epoch: 73, iter: 5400/30000, loss: 0.1205, lr: 0.040000, batch_cost: 7.0181, reader_cost: 6.68292, ips: 9.1193 samples/sec | ETA 47:57:25
+2022-03-03 14:12:39 [INFO]	[TRAIN] epoch: 74, iter: 5450/30000, loss: 0.1219, lr: 0.040000, batch_cost: 6.8136, reader_cost: 6.47854, ips: 9.3930 samples/sec | ETA 46:27:53
+2022-03-03 14:18:33 [INFO]	[TRAIN] epoch: 75, iter: 5500/30000, loss: 0.1138, lr: 0.040000, batch_cost: 7.0788, reader_cost: 6.74290, ips: 9.0410 samples/sec | ETA 48:10:31
+2022-03-03 14:24:08 [INFO]	[TRAIN] epoch: 75, iter: 5550/30000, loss: 0.1233, lr: 0.040000, batch_cost: 6.6966, reader_cost: 6.36066, ips: 9.5570 samples/sec | ETA 45:28:53
+2022-03-03 14:30:01 [INFO]	[TRAIN] epoch: 76, iter: 5600/30000, loss: 0.1163, lr: 0.040000, batch_cost: 7.0620, reader_cost: 6.72714, ips: 9.0627 samples/sec | ETA 47:51:51
+2022-03-03 14:35:44 [INFO]	[TRAIN] epoch: 77, iter: 5650/30000, loss: 0.1173, lr: 0.040000, batch_cost: 6.8577, reader_cost: 6.52200, ips: 9.3326 samples/sec | ETA 46:23:04
+2022-03-03 14:41:32 [INFO]	[TRAIN] epoch: 78, iter: 5700/30000, loss: 0.1180, lr: 0.040000, batch_cost: 6.9682, reader_cost: 6.63280, ips: 9.1846 samples/sec | ETA 47:02:06
+2022-03-03 14:47:13 [INFO]	[TRAIN] epoch: 78, iter: 5750/30000, loss: 0.1149, lr: 0.040000, batch_cost: 6.8129, reader_cost: 6.47740, ips: 9.3940 samples/sec | ETA 45:53:32
+2022-03-03 14:53:02 [INFO]	[TRAIN] epoch: 79, iter: 5800/30000, loss: 0.1157, lr: 0.040000, batch_cost: 6.9947, reader_cost: 6.65976, ips: 9.1497 samples/sec | ETA 47:01:12
+2022-03-03 14:58:51 [INFO]	[TRAIN] epoch: 80, iter: 5850/30000, loss: 0.1228, lr: 0.040000, batch_cost: 6.9778, reader_cost: 6.64235, ips: 9.1720 samples/sec | ETA 46:48:32
+2022-03-03 15:04:34 [INFO]	[TRAIN] epoch: 80, iter: 5900/30000, loss: 0.1156, lr: 0.040000, batch_cost: 6.8588, reader_cost: 6.52369, ips: 9.3311 samples/sec | ETA 45:54:56
+2022-03-03 15:10:07 [INFO]	[TRAIN] epoch: 81, iter: 5950/30000, loss: 0.1146, lr: 0.040000, batch_cost: 6.6478, reader_cost: 6.31273, ips: 9.6272 samples/sec | ETA 44:24:39
+2022-03-03 15:15:52 [INFO]	[TRAIN] epoch: 82, iter: 6000/30000, loss: 0.1132, lr: 0.040000, batch_cost: 6.9044, reader_cost: 6.56949, ips: 9.2695 samples/sec | ETA 46:01:45
+2022-03-03 15:15:52 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 80s 84ms/step - batch_cost: 0.0838 - reader cost: 0.06
+2022-03-03 15:17:12 [INFO]	[EVAL] #Images: 949 mIoU: 0.8143 Acc: 0.9309 Kappa: 0.7885 Dice: 0.8941
+2022-03-03 15:17:12 [INFO]	[EVAL] Class IoU: 
+[0.9167 0.7119]
+2022-03-03 15:17:12 [INFO]	[EVAL] Class Acc: 
+[0.9407 0.8896]
+2022-03-03 15:17:12 [INFO]	[EVAL] The model with the best validation mIoU (0.8143) was saved at iter 6000.
+2022-03-03 15:22:21 [INFO]	[TRAIN] epoch: 82, iter: 6050/30000, loss: 0.1232, lr: 0.040000, batch_cost: 6.1912, reader_cost: 5.85474, ips: 10.3372 samples/sec | ETA 41:11:20
+2022-03-03 15:28:02 [INFO]	[TRAIN] epoch: 83, iter: 6100/30000, loss: 0.1213, lr: 0.040000, batch_cost: 6.8175, reader_cost: 6.48303, ips: 9.3877 samples/sec | ETA 45:15:37
+2022-03-03 15:33:44 [INFO]	[TRAIN] epoch: 84, iter: 6150/30000, loss: 0.1229, lr: 0.040000, batch_cost: 6.8329, reader_cost: 6.49848, ips: 9.3664 samples/sec | ETA 45:16:05
+2022-03-03 15:39:29 [INFO]	[TRAIN] epoch: 84, iter: 6200/30000, loss: 0.1133, lr: 0.040000, batch_cost: 6.8987, reader_cost: 6.56371, ips: 9.2771 samples/sec | ETA 45:36:28
+2022-03-03 15:45:07 [INFO]	[TRAIN] epoch: 85, iter: 6250/30000, loss: 0.1163, lr: 0.040000, batch_cost: 6.7655, reader_cost: 6.43064, ips: 9.4597 samples/sec | ETA 44:38:01
+2022-03-03 15:50:48 [INFO]	[TRAIN] epoch: 86, iter: 6300/30000, loss: 0.1149, lr: 0.040000, batch_cost: 6.8143, reader_cost: 6.47932, ips: 9.3921 samples/sec | ETA 44:51:38
+2022-03-03 15:56:51 [INFO]	[TRAIN] epoch: 86, iter: 6350/30000, loss: 0.1241, lr: 0.040000, batch_cost: 7.2748, reader_cost: 6.94057, ips: 8.7975 samples/sec | ETA 47:47:29
+2022-03-03 16:02:33 [INFO]	[TRAIN] epoch: 87, iter: 6400/30000, loss: 0.1171, lr: 0.040000, batch_cost: 6.8339, reader_cost: 6.49880, ips: 9.3651 samples/sec | ETA 44:47:59
+Epoch 6402: ReduceOnPlateau set learning rate to 0.016.
+2022-03-03 16:08:10 [INFO]	[TRAIN] epoch: 88, iter: 6450/30000, loss: 0.1015, lr: 0.016000, batch_cost: 6.7464, reader_cost: 6.41118, ips: 9.4865 samples/sec | ETA 44:07:58
+2022-03-03 16:14:04 [INFO]	[TRAIN] epoch: 88, iter: 6500/30000, loss: 0.0907, lr: 0.016000, batch_cost: 7.0763, reader_cost: 6.74094, ips: 9.0443 samples/sec | ETA 46:11:31
+2022-03-03 16:19:46 [INFO]	[TRAIN] epoch: 89, iter: 6550/30000, loss: 0.0918, lr: 0.016000, batch_cost: 6.8395, reader_cost: 6.50389, ips: 9.3575 samples/sec | ETA 44:33:05
+2022-03-03 16:25:47 [INFO]	[TRAIN] epoch: 90, iter: 6600/30000, loss: 0.0882, lr: 0.016000, batch_cost: 7.2086, reader_cost: 6.87299, ips: 8.8783 samples/sec | ETA 46:51:21
+2022-03-03 16:31:26 [INFO]	[TRAIN] epoch: 90, iter: 6650/30000, loss: 0.0879, lr: 0.016000, batch_cost: 6.7820, reader_cost: 6.44691, ips: 9.4367 samples/sec | ETA 43:59:19
+2022-03-03 16:37:09 [INFO]	[TRAIN] epoch: 91, iter: 6700/30000, loss: 0.0860, lr: 0.016000, batch_cost: 6.8629, reader_cost: 6.52634, ips: 9.3254 samples/sec | ETA 44:25:06
+2022-03-03 16:42:48 [INFO]	[TRAIN] epoch: 92, iter: 6750/30000, loss: 0.0855, lr: 0.016000, batch_cost: 6.7752, reader_cost: 6.43917, ips: 9.4462 samples/sec | ETA 43:45:22
+2022-03-03 16:48:38 [INFO]	[TRAIN] epoch: 92, iter: 6800/30000, loss: 0.0859, lr: 0.016000, batch_cost: 6.9973, reader_cost: 6.66120, ips: 9.1464 samples/sec | ETA 45:05:37
+2022-03-03 16:54:25 [INFO]	[TRAIN] epoch: 93, iter: 6850/30000, loss: 0.0841, lr: 0.016000, batch_cost: 6.9401, reader_cost: 6.60438, ips: 9.2218 samples/sec | ETA 44:37:43
+2022-03-03 17:00:08 [INFO]	[TRAIN] epoch: 94, iter: 6900/30000, loss: 0.0859, lr: 0.016000, batch_cost: 6.8699, reader_cost: 6.53380, ips: 9.3160 samples/sec | ETA 44:04:54
+2022-03-03 17:05:57 [INFO]	[TRAIN] epoch: 94, iter: 6950/30000, loss: 0.0825, lr: 0.016000, batch_cost: 6.9834, reader_cost: 6.64771, ips: 9.1646 samples/sec | ETA 44:42:47
+2022-03-03 17:11:44 [INFO]	[TRAIN] epoch: 95, iter: 7000/30000, loss: 0.0854, lr: 0.016000, batch_cost: 6.9349, reader_cost: 6.59915, ips: 9.2287 samples/sec | ETA 44:18:22
+2022-03-03 17:11:44 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 81s 86ms/step - batch_cost: 0.0855 - reader cost: 0.06
+2022-03-03 17:13:05 [INFO]	[EVAL] #Images: 949 mIoU: 0.8413 Acc: 0.9407 Kappa: 0.8228 Dice: 0.9114
+2022-03-03 17:13:05 [INFO]	[EVAL] Class IoU: 
+[0.9275 0.755 ]
+2022-03-03 17:13:05 [INFO]	[EVAL] Class Acc: 
+[0.9548 0.8866]
+2022-03-03 17:13:05 [INFO]	[EVAL] The model with the best validation mIoU (0.8413) was saved at iter 7000.
+2022-03-03 17:21:13 [INFO]	[TRAIN] epoch: 96, iter: 7050/30000, loss: 0.0837, lr: 0.016000, batch_cost: 7.1176, reader_cost: 6.78126, ips: 8.9918 samples/sec | ETA 45:22:29
+2022-03-03 17:27:04 [INFO]	[TRAIN] epoch: 96, iter: 7100/30000, loss: 0.0833, lr: 0.016000, batch_cost: 7.0228, reader_cost: 6.68748, ips: 9.1132 samples/sec | ETA 44:40:22
+2022-03-03 17:32:54 [INFO]	[TRAIN] epoch: 97, iter: 7150/30000, loss: 0.0842, lr: 0.016000, batch_cost: 7.0057, reader_cost: 6.67118, ips: 9.1355 samples/sec | ETA 44:27:59
+2022-03-03 17:38:43 [INFO]	[TRAIN] epoch: 98, iter: 7200/30000, loss: 0.0824, lr: 0.016000, batch_cost: 6.9797, reader_cost: 6.64430, ips: 9.1695 samples/sec | ETA 44:12:16
+2022-03-03 17:44:37 [INFO]	[TRAIN] epoch: 98, iter: 7250/30000, loss: 0.0820, lr: 0.016000, batch_cost: 7.0712, reader_cost: 6.73625, ips: 9.0508 samples/sec | ETA 44:41:09
+2022-03-03 17:50:23 [INFO]	[TRAIN] epoch: 99, iter: 7300/30000, loss: 0.0847, lr: 0.016000, batch_cost: 6.9173, reader_cost: 6.58212, ips: 9.2521 samples/sec | ETA 43:37:03
+2022-03-03 17:56:09 [INFO]	[TRAIN] epoch: 100, iter: 7350/30000, loss: 0.0800, lr: 0.016000, batch_cost: 6.9147, reader_cost: 6.57984, ips: 9.2556 samples/sec | ETA 43:30:18
+2022-03-03 18:02:07 [INFO]	[TRAIN] epoch: 100, iter: 7400/30000, loss: 0.0823, lr: 0.016000, batch_cost: 7.1604, reader_cost: 6.82527, ips: 8.9380 samples/sec | ETA 44:57:05
+2022-03-03 18:07:57 [INFO]	[TRAIN] epoch: 101, iter: 7450/30000, loss: 0.0859, lr: 0.016000, batch_cost: 7.0169, reader_cost: 6.68220, ips: 9.1209 samples/sec | ETA 43:57:10
+2022-03-03 18:14:13 [INFO]	[TRAIN] epoch: 102, iter: 7500/30000, loss: 0.0812, lr: 0.016000, batch_cost: 7.5173, reader_cost: 7.18287, ips: 8.5137 samples/sec | ETA 46:58:58
+2022-03-03 18:20:12 [INFO]	[TRAIN] epoch: 103, iter: 7550/30000, loss: 0.0829, lr: 0.016000, batch_cost: 7.1699, reader_cost: 6.83493, ips: 8.9262 samples/sec | ETA 44:42:44
+2022-03-03 18:26:27 [INFO]	[TRAIN] epoch: 103, iter: 7600/30000, loss: 0.0834, lr: 0.016000, batch_cost: 7.5118, reader_cost: 7.17777, ips: 8.5199 samples/sec | ETA 46:44:24
+2022-03-03 18:32:33 [INFO]	[TRAIN] epoch: 104, iter: 7650/30000, loss: 0.0798, lr: 0.016000, batch_cost: 7.3160, reader_cost: 6.98161, ips: 8.7479 samples/sec | ETA 45:25:12
+2022-03-03 18:38:44 [INFO]	[TRAIN] epoch: 105, iter: 7700/30000, loss: 0.0829, lr: 0.016000, batch_cost: 7.4132, reader_cost: 7.07901, ips: 8.6332 samples/sec | ETA 45:55:14
+2022-03-03 18:44:46 [INFO]	[TRAIN] epoch: 105, iter: 7750/30000, loss: 0.0784, lr: 0.016000, batch_cost: 7.2372, reader_cost: 6.90205, ips: 8.8432 samples/sec | ETA 44:43:47
+2022-03-03 18:50:56 [INFO]	[TRAIN] epoch: 106, iter: 7800/30000, loss: 0.0789, lr: 0.016000, batch_cost: 7.4019, reader_cost: 7.06662, ips: 8.6465 samples/sec | ETA 45:38:41
+2022-03-03 18:57:06 [INFO]	[TRAIN] epoch: 107, iter: 7850/30000, loss: 0.0836, lr: 0.016000, batch_cost: 7.4032, reader_cost: 7.06905, ips: 8.6449 samples/sec | ETA 45:33:01
+2022-03-03 19:03:10 [INFO]	[TRAIN] epoch: 107, iter: 7900/30000, loss: 0.0816, lr: 0.016000, batch_cost: 7.2835, reader_cost: 6.94884, ips: 8.7870 samples/sec | ETA 44:42:44
+2022-03-03 19:09:05 [INFO]	[TRAIN] epoch: 108, iter: 7950/30000, loss: 0.0815, lr: 0.016000, batch_cost: 7.0886, reader_cost: 6.75453, ips: 9.0285 samples/sec | ETA 43:25:04
+2022-03-03 19:15:10 [INFO]	[TRAIN] epoch: 109, iter: 8000/30000, loss: 0.0790, lr: 0.016000, batch_cost: 7.3162, reader_cost: 6.98185, ips: 8.7477 samples/sec | ETA 44:42:37
+2022-03-03 19:15:10 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 85s 90ms/step - batch_cost: 0.0898 - reader cost: 0.065
+2022-03-03 19:16:36 [INFO]	[EVAL] #Images: 949 mIoU: 0.8450 Acc: 0.9421 Kappa: 0.8275 Dice: 0.9137
+2022-03-03 19:16:36 [INFO]	[EVAL] Class IoU: 
+[0.9291 0.7609]
+2022-03-03 19:16:36 [INFO]	[EVAL] Class Acc: 
+[0.9566 0.887 ]
+2022-03-03 19:16:36 [INFO]	[EVAL] The model with the best validation mIoU (0.8450) was saved at iter 8000.
+2022-03-03 19:21:55 [INFO]	[TRAIN] epoch: 109, iter: 8050/30000, loss: 0.0834, lr: 0.016000, batch_cost: 6.3839, reader_cost: 6.04741, ips: 10.0253 samples/sec | ETA 38:55:25
+2022-03-03 19:27:51 [INFO]	[TRAIN] epoch: 110, iter: 8100/30000, loss: 0.0834, lr: 0.016000, batch_cost: 7.1222, reader_cost: 6.78570, ips: 8.9860 samples/sec | ETA 43:19:36
+2022-03-03 19:33:46 [INFO]	[TRAIN] epoch: 111, iter: 8150/30000, loss: 0.0845, lr: 0.016000, batch_cost: 7.0968, reader_cost: 6.76040, ips: 9.0181 samples/sec | ETA 43:04:25
+2022-03-03 19:39:50 [INFO]	[TRAIN] epoch: 111, iter: 8200/30000, loss: 0.0808, lr: 0.016000, batch_cost: 7.2888, reader_cost: 6.95238, ips: 8.7806 samples/sec | ETA 44:08:16
+2022-03-03 19:45:46 [INFO]	[TRAIN] epoch: 112, iter: 8250/30000, loss: 0.0838, lr: 0.016000, batch_cost: 7.1066, reader_cost: 6.77095, ips: 9.0057 samples/sec | ETA 42:56:09
+2022-03-03 19:51:37 [INFO]	[TRAIN] epoch: 113, iter: 8300/30000, loss: 0.0820, lr: 0.016000, batch_cost: 7.0263, reader_cost: 6.68966, ips: 9.1087 samples/sec | ETA 42:21:09
+Epoch 8302: ReduceOnPlateau set learning rate to 0.0064.
+2022-03-03 19:57:57 [INFO]	[TRAIN] epoch: 113, iter: 8350/30000, loss: 0.0767, lr: 0.006400, batch_cost: 7.5961, reader_cost: 7.25980, ips: 8.4254 samples/sec | ETA 45:40:55
+2022-03-03 20:03:31 [INFO]	[TRAIN] epoch: 114, iter: 8400/30000, loss: 0.0707, lr: 0.006400, batch_cost: 6.6930, reader_cost: 6.35691, ips: 9.5622 samples/sec | ETA 40:09:29
+2022-03-03 20:09:17 [INFO]	[TRAIN] epoch: 115, iter: 8450/30000, loss: 0.0684, lr: 0.006400, batch_cost: 6.9130, reader_cost: 6.57663, ips: 9.2580 samples/sec | ETA 41:22:54
+2022-03-03 20:15:23 [INFO]	[TRAIN] epoch: 115, iter: 8500/30000, loss: 0.0661, lr: 0.006400, batch_cost: 7.3177, reader_cost: 6.98141, ips: 8.7459 samples/sec | ETA 43:42:10
+2022-03-03 20:21:16 [INFO]	[TRAIN] epoch: 116, iter: 8550/30000, loss: 0.0670, lr: 0.006400, batch_cost: 7.0497, reader_cost: 6.71366, ips: 9.0784 samples/sec | ETA 42:00:16
+2022-03-03 20:27:24 [INFO]	[TRAIN] epoch: 117, iter: 8600/30000, loss: 0.0666, lr: 0.006400, batch_cost: 7.3636, reader_cost: 7.02664, ips: 8.6914 samples/sec | ETA 43:46:21
+2022-03-03 20:33:06 [INFO]	[TRAIN] epoch: 117, iter: 8650/30000, loss: 0.0665, lr: 0.006400, batch_cost: 6.8541, reader_cost: 6.51752, ips: 9.3375 samples/sec | ETA 40:38:54
+2022-03-03 20:38:48 [INFO]	[TRAIN] epoch: 118, iter: 8700/30000, loss: 0.0652, lr: 0.006400, batch_cost: 6.8230, reader_cost: 6.48587, ips: 9.3800 samples/sec | ETA 40:22:10
+2022-03-03 20:44:31 [INFO]	[TRAIN] epoch: 119, iter: 8750/30000, loss: 0.0647, lr: 0.006400, batch_cost: 6.8654, reader_cost: 6.52833, ips: 9.3222 samples/sec | ETA 40:31:28
+2022-03-03 20:50:27 [INFO]	[TRAIN] epoch: 119, iter: 8800/30000, loss: 0.0656, lr: 0.006400, batch_cost: 7.1234, reader_cost: 6.78743, ips: 8.9844 samples/sec | ETA 41:56:56
+2022-03-03 20:56:17 [INFO]	[TRAIN] epoch: 120, iter: 8850/30000, loss: 0.0646, lr: 0.006400, batch_cost: 6.9982, reader_cost: 6.66168, ips: 9.1452 samples/sec | ETA 41:06:52
+2022-03-03 21:02:06 [INFO]	[TRAIN] epoch: 121, iter: 8900/30000, loss: 0.0652, lr: 0.006400, batch_cost: 6.9796, reader_cost: 6.64283, ips: 9.1696 samples/sec | ETA 40:54:28
+2022-03-03 21:07:54 [INFO]	[TRAIN] epoch: 121, iter: 8950/30000, loss: 0.0638, lr: 0.006400, batch_cost: 6.9620, reader_cost: 6.62588, ips: 9.1927 samples/sec | ETA 40:42:31
+2022-03-03 21:13:39 [INFO]	[TRAIN] epoch: 122, iter: 9000/30000, loss: 0.0641, lr: 0.006400, batch_cost: 6.9100, reader_cost: 6.57411, ips: 9.2620 samples/sec | ETA 40:18:29
+2022-03-03 21:13:39 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 82s 87ms/step - batch_cost: 0.0864 - reader cost: 0.062
+2022-03-03 21:15:02 [INFO]	[EVAL] #Images: 949 mIoU: 0.8478 Acc: 0.9417 Kappa: 0.8313 Dice: 0.9156
+2022-03-03 21:15:02 [INFO]	[EVAL] Class IoU: 
+[0.9278 0.7679]
+2022-03-03 21:15:02 [INFO]	[EVAL] Class Acc: 
+[0.9667 0.8557]
+2022-03-03 21:15:02 [INFO]	[EVAL] The model with the best validation mIoU (0.8478) was saved at iter 9000.
+2022-03-03 21:24:37 [INFO]	[TRAIN] epoch: 123, iter: 9050/30000, loss: 0.0633, lr: 0.006400, batch_cost: 7.1721, reader_cost: 6.83562, ips: 8.9235 samples/sec | ETA 41:44:14
+2022-03-03 21:30:36 [INFO]	[TRAIN] epoch: 123, iter: 9100/30000, loss: 0.0630, lr: 0.006400, batch_cost: 7.1780, reader_cost: 6.84284, ips: 8.9161 samples/sec | ETA 41:40:20
+2022-03-03 21:36:39 [INFO]	[TRAIN] epoch: 124, iter: 9150/30000, loss: 0.0644, lr: 0.006400, batch_cost: 7.2681, reader_cost: 6.93208, ips: 8.8056 samples/sec | ETA 42:05:39
+2022-03-03 21:42:51 [INFO]	[TRAIN] epoch: 125, iter: 9200/30000, loss: 0.0626, lr: 0.006400, batch_cost: 7.4343, reader_cost: 7.09895, ips: 8.6087 samples/sec | ETA 42:57:14
+2022-03-03 21:49:02 [INFO]	[TRAIN] epoch: 125, iter: 9250/30000, loss: 0.0634, lr: 0.006400, batch_cost: 7.4212, reader_cost: 7.08517, ips: 8.6240 samples/sec | ETA 42:46:29
+2022-03-03 21:55:00 [INFO]	[TRAIN] epoch: 126, iter: 9300/30000, loss: 0.0647, lr: 0.006400, batch_cost: 7.1594, reader_cost: 6.82441, ips: 8.9392 samples/sec | ETA 41:10:00
+2022-03-03 22:01:00 [INFO]	[TRAIN] epoch: 127, iter: 9350/30000, loss: 0.0617, lr: 0.006400, batch_cost: 7.1952, reader_cost: 6.85968, ips: 8.8948 samples/sec | ETA 41:16:21
+2022-03-03 22:07:16 [INFO]	[TRAIN] epoch: 128, iter: 9400/30000, loss: 0.0630, lr: 0.006400, batch_cost: 7.5199, reader_cost: 7.18431, ips: 8.5108 samples/sec | ETA 43:01:49
+2022-03-03 22:13:15 [INFO]	[TRAIN] epoch: 128, iter: 9450/30000, loss: 0.0658, lr: 0.006400, batch_cost: 7.1916, reader_cost: 6.85669, ips: 8.8992 samples/sec | ETA 41:03:08
+2022-03-03 22:19:28 [INFO]	[TRAIN] epoch: 129, iter: 9500/30000, loss: 0.0632, lr: 0.006400, batch_cost: 7.4626, reader_cost: 7.12670, ips: 8.5761 samples/sec | ETA 42:29:43
+2022-03-03 22:24:58 [INFO]	[TRAIN] epoch: 130, iter: 9550/30000, loss: 0.0645, lr: 0.006400, batch_cost: 6.5994, reader_cost: 6.26468, ips: 9.6979 samples/sec | ETA 37:29:17
+2022-03-03 22:30:42 [INFO]	[TRAIN] epoch: 130, iter: 9600/30000, loss: 0.0642, lr: 0.006400, batch_cost: 6.8653, reader_cost: 6.53136, ips: 9.3222 samples/sec | ETA 38:54:12
+2022-03-03 22:36:18 [INFO]	[TRAIN] epoch: 131, iter: 9650/30000, loss: 0.0606, lr: 0.006400, batch_cost: 6.7259, reader_cost: 6.39147, ips: 9.5154 samples/sec | ETA 38:01:12
+2022-03-03 22:42:00 [INFO]	[TRAIN] epoch: 132, iter: 9700/30000, loss: 0.0630, lr: 0.006400, batch_cost: 6.8481, reader_cost: 6.51320, ips: 9.3456 samples/sec | ETA 38:36:57
+2022-03-03 22:47:39 [INFO]	[TRAIN] epoch: 132, iter: 9750/30000, loss: 0.0608, lr: 0.006400, batch_cost: 6.7713, reader_cost: 6.43624, ips: 9.4517 samples/sec | ETA 38:05:18
+2022-03-03 22:53:23 [INFO]	[TRAIN] epoch: 133, iter: 9800/30000, loss: 0.0605, lr: 0.006400, batch_cost: 6.8829, reader_cost: 6.54853, ips: 9.2984 samples/sec | ETA 38:37:14
+2022-03-03 22:59:10 [INFO]	[TRAIN] epoch: 134, iter: 9850/30000, loss: 0.0613, lr: 0.006400, batch_cost: 6.9357, reader_cost: 6.60085, ips: 9.2276 samples/sec | ETA 38:49:14
+2022-03-03 23:04:59 [INFO]	[TRAIN] epoch: 134, iter: 9900/30000, loss: 0.0597, lr: 0.006400, batch_cost: 6.9779, reader_cost: 6.64279, ips: 9.1718 samples/sec | ETA 38:57:36
+2022-03-03 23:10:35 [INFO]	[TRAIN] epoch: 135, iter: 9950/30000, loss: 0.0613, lr: 0.006400, batch_cost: 6.7277, reader_cost: 6.39229, ips: 9.5129 samples/sec | ETA 37:28:10
+2022-03-03 23:16:18 [INFO]	[TRAIN] epoch: 136, iter: 10000/30000, loss: 0.0604, lr: 0.006400, batch_cost: 6.8655, reader_cost: 6.53087, ips: 9.3220 samples/sec | ETA 38:08:29
+2022-03-03 23:16:18 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 81s 85ms/step - batch_cost: 0.0848 - reader cost: 0.061
+2022-03-03 23:17:39 [INFO]	[EVAL] #Images: 949 mIoU: 0.8524 Acc: 0.9456 Kappa: 0.8365 Dice: 0.9182
+2022-03-03 23:17:39 [INFO]	[EVAL] Class IoU: 
+[0.9333 0.7714]
+2022-03-03 23:17:39 [INFO]	[EVAL] Class Acc: 
+[0.9561 0.9042]
+2022-03-03 23:17:39 [INFO]	[EVAL] The model with the best validation mIoU (0.8524) was saved at iter 10000.
+2022-03-04 09:52:42 [INFO]	[TRAIN] epoch: 136, iter: 10050/30000, loss: 0.0609, lr: 0.006400, batch_cost: 11.0129, reader_cost: 10.68222, ips: 5.8114 samples/sec | ETA 61:01:47
+2022-03-04 09:58:14 [INFO]	[TRAIN] epoch: 137, iter: 10100/30000, loss: 0.0610, lr: 0.006400, batch_cost: 6.6546, reader_cost: 6.32652, ips: 9.6174 samples/sec | ETA 36:47:07
+2022-03-04 10:03:40 [INFO]	[TRAIN] epoch: 138, iter: 10150/30000, loss: 0.0624, lr: 0.006400, batch_cost: 6.5015, reader_cost: 6.17388, ips: 9.8439 samples/sec | ETA 35:50:54
+2022-03-04 10:09:06 [INFO]	[TRAIN] epoch: 138, iter: 10200/30000, loss: 0.0608, lr: 0.006400, batch_cost: 6.5360, reader_cost: 6.20715, ips: 9.7919 samples/sec | ETA 35:56:53
+2022-03-04 10:14:34 [INFO]	[TRAIN] epoch: 139, iter: 10250/30000, loss: 0.0609, lr: 0.006400, batch_cost: 6.5585, reader_cost: 6.23013, ips: 9.7583 samples/sec | ETA 35:58:50
+2022-03-04 10:19:55 [INFO]	[TRAIN] epoch: 140, iter: 10300/30000, loss: 0.0612, lr: 0.006400, batch_cost: 6.4207, reader_cost: 6.09312, ips: 9.9678 samples/sec | ETA 35:08:07
+2022-03-04 10:25:16 [INFO]	[TRAIN] epoch: 140, iter: 10350/30000, loss: 0.0582, lr: 0.006400, batch_cost: 6.4153, reader_cost: 6.08738, ips: 9.9761 samples/sec | ETA 35:01:01
+2022-03-04 10:30:48 [INFO]	[TRAIN] epoch: 141, iter: 10400/30000, loss: 0.0610, lr: 0.006400, batch_cost: 6.6467, reader_cost: 6.31801, ips: 9.6288 samples/sec | ETA 36:11:15
+2022-03-04 10:36:12 [INFO]	[TRAIN] epoch: 142, iter: 10450/30000, loss: 0.0631, lr: 0.006400, batch_cost: 6.4683, reader_cost: 6.13999, ips: 9.8945 samples/sec | ETA 35:07:34
+2022-03-04 10:42:30 [INFO]	[TRAIN] epoch: 142, iter: 10500/30000, loss: 0.0614, lr: 0.006400, batch_cost: 7.5683, reader_cost: 7.23999, ips: 8.4563 samples/sec | ETA 40:59:42
+2022-03-04 10:47:48 [INFO]	[TRAIN] epoch: 143, iter: 10550/30000, loss: 0.0619, lr: 0.006400, batch_cost: 6.3646, reader_cost: 6.03642, ips: 10.0556 samples/sec | ETA 34:23:11
+2022-03-04 10:53:19 [INFO]	[TRAIN] epoch: 144, iter: 10600/30000, loss: 0.0611, lr: 0.006400, batch_cost: 6.6042, reader_cost: 6.27692, ips: 9.6908 samples/sec | ETA 35:35:21
+2022-03-04 10:58:37 [INFO]	[TRAIN] epoch: 144, iter: 10650/30000, loss: 0.0596, lr: 0.006400, batch_cost: 6.3717, reader_cost: 6.04421, ips: 10.0444 samples/sec | ETA 34:14:51
+2022-03-04 11:04:03 [INFO]	[TRAIN] epoch: 145, iter: 10700/30000, loss: 0.0619, lr: 0.006400, batch_cost: 6.5096, reader_cost: 6.18164, ips: 9.8317 samples/sec | ETA 34:53:54
+2022-03-04 11:09:33 [INFO]	[TRAIN] epoch: 146, iter: 10750/30000, loss: 0.0585, lr: 0.006400, batch_cost: 6.6007, reader_cost: 6.27231, ips: 9.6959 samples/sec | ETA 35:17:44
+2022-03-04 11:15:08 [INFO]	[TRAIN] epoch: 146, iter: 10800/30000, loss: 0.0582, lr: 0.006400, batch_cost: 6.6990, reader_cost: 6.37088, ips: 9.5536 samples/sec | ETA 35:43:41
+2022-03-04 11:20:41 [INFO]	[TRAIN] epoch: 147, iter: 10850/30000, loss: 0.0600, lr: 0.006400, batch_cost: 6.6708, reader_cost: 6.34339, ips: 9.5941 samples/sec | ETA 35:29:04
+2022-03-04 11:26:13 [INFO]	[TRAIN] epoch: 148, iter: 10900/30000, loss: 0.0588, lr: 0.006400, batch_cost: 6.6393, reader_cost: 6.31075, ips: 9.6396 samples/sec | ETA 35:13:30
+Epoch 10902: ReduceOnPlateau set learning rate to 0.00256.
+2022-03-04 11:31:31 [INFO]	[TRAIN] epoch: 148, iter: 10950/30000, loss: 0.0579, lr: 0.002560, batch_cost: 6.3624, reader_cost: 6.03487, ips: 10.0591 samples/sec | ETA 33:40:03
+2022-03-04 11:37:00 [INFO]	[TRAIN] epoch: 149, iter: 11000/30000, loss: 0.0547, lr: 0.002560, batch_cost: 6.5641, reader_cost: 6.23635, ips: 9.7500 samples/sec | ETA 34:38:38
+2022-03-04 11:37:00 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 83s 87ms/step - batch_cost: 0.0869 - reader cost: 0.06
+2022-03-04 11:38:22 [INFO]	[EVAL] #Images: 949 mIoU: 0.8559 Acc: 0.9456 Kappa: 0.8411 Dice: 0.9205
+2022-03-04 11:38:22 [INFO]	[EVAL] Class IoU: 
+[0.9327 0.7792]
+2022-03-04 11:38:22 [INFO]	[EVAL] Class Acc: 
+[0.9658 0.8738]
+2022-03-04 11:38:22 [INFO]	[EVAL] The model with the best validation mIoU (0.8559) was saved at iter 11000.
+2022-03-07 23:00:49 [INFO]	[TRAIN] epoch: 150, iter: 11050/30000, loss: 0.0548, lr: 0.002560, batch_cost: 6.9843, reader_cost: 6.64694, ips: 9.1634 samples/sec | ETA 36:45:52
+2022-03-07 23:06:36 [INFO]	[TRAIN] epoch: 150, iter: 11100/30000, loss: 0.0539, lr: 0.002560, batch_cost: 6.9456, reader_cost: 6.61015, ips: 9.2145 samples/sec | ETA 36:27:50
+2022-03-07 23:12:21 [INFO]	[TRAIN] epoch: 151, iter: 11150/30000, loss: 0.0552, lr: 0.002560, batch_cost: 6.8833, reader_cost: 6.54685, ips: 9.2978 samples/sec | ETA 36:02:31
+2022-03-07 23:18:07 [INFO]	[TRAIN] epoch: 152, iter: 11200/30000, loss: 0.0540, lr: 0.002560, batch_cost: 6.9331, reader_cost: 6.59672, ips: 9.2311 samples/sec | ETA 36:12:21
+2022-03-07 23:23:53 [INFO]	[TRAIN] epoch: 153, iter: 11250/30000, loss: 0.0543, lr: 0.002560, batch_cost: 6.9128, reader_cost: 6.57732, ips: 9.2582 samples/sec | ETA 36:00:15
+2022-03-07 23:29:33 [INFO]	[TRAIN] epoch: 153, iter: 11300/30000, loss: 0.0542, lr: 0.002560, batch_cost: 6.8000, reader_cost: 6.46423, ips: 9.4117 samples/sec | ETA 35:19:20
+2022-03-07 23:35:25 [INFO]	[TRAIN] epoch: 154, iter: 11350/30000, loss: 0.0528, lr: 0.002560, batch_cost: 7.0356, reader_cost: 6.69964, ips: 9.0966 samples/sec | ETA 36:26:53
+2022-03-07 23:41:37 [INFO]	[TRAIN] epoch: 155, iter: 11400/30000, loss: 0.0533, lr: 0.002560, batch_cost: 7.4436, reader_cost: 7.10718, ips: 8.5980 samples/sec | ETA 38:27:30
+2022-03-07 23:47:33 [INFO]	[TRAIN] epoch: 155, iter: 11450/30000, loss: 0.0552, lr: 0.002560, batch_cost: 7.1312, reader_cost: 6.79516, ips: 8.9747 samples/sec | ETA 36:44:42
+2022-03-07 23:53:46 [INFO]	[TRAIN] epoch: 156, iter: 11500/30000, loss: 0.0529, lr: 0.002560, batch_cost: 7.4441, reader_cost: 7.10659, ips: 8.5974 samples/sec | ETA 38:15:15
+2022-03-07 23:59:36 [INFO]	[TRAIN] epoch: 157, iter: 11550/30000, loss: 0.0546, lr: 0.002560, batch_cost: 7.0096, reader_cost: 6.67317, ips: 9.1304 samples/sec | ETA 35:55:26
+2022-03-08 00:05:49 [INFO]	[TRAIN] epoch: 157, iter: 11600/30000, loss: 0.0545, lr: 0.002560, batch_cost: 7.4601, reader_cost: 7.12433, ips: 8.5790 samples/sec | ETA 38:07:45
+2022-03-08 00:11:50 [INFO]	[TRAIN] epoch: 158, iter: 11650/30000, loss: 0.0531, lr: 0.002560, batch_cost: 7.2218, reader_cost: 6.88647, ips: 8.8620 samples/sec | ETA 36:48:40
+2022-03-08 00:17:57 [INFO]	[TRAIN] epoch: 159, iter: 11700/30000, loss: 0.0539, lr: 0.002560, batch_cost: 7.3357, reader_cost: 6.99963, ips: 8.7244 samples/sec | ETA 37:17:23
+2022-03-08 00:23:58 [INFO]	[TRAIN] epoch: 159, iter: 11750/30000, loss: 0.0520, lr: 0.002560, batch_cost: 7.2204, reader_cost: 6.88474, ips: 8.8638 samples/sec | ETA 36:36:12
+2022-03-08 00:30:06 [INFO]	[TRAIN] epoch: 160, iter: 11800/30000, loss: 0.0528, lr: 0.002560, batch_cost: 7.3570, reader_cost: 7.02070, ips: 8.6992 samples/sec | ETA 37:11:38
+2022-03-08 00:36:13 [INFO]	[TRAIN] epoch: 161, iter: 11850/30000, loss: 0.0526, lr: 0.002560, batch_cost: 7.3403, reader_cost: 7.00484, ips: 8.7190 samples/sec | ETA 37:00:25
+2022-03-08 00:42:18 [INFO]	[TRAIN] epoch: 161, iter: 11900/30000, loss: 0.0514, lr: 0.002560, batch_cost: 7.2958, reader_cost: 6.96064, ips: 8.7721 samples/sec | ETA 36:40:54
+2022-03-08 00:48:09 [INFO]	[TRAIN] epoch: 162, iter: 11950/30000, loss: 0.0528, lr: 0.002560, batch_cost: 7.0271, reader_cost: 6.69063, ips: 9.1076 samples/sec | ETA 35:13:59
+2022-03-08 00:54:12 [INFO]	[TRAIN] epoch: 163, iter: 12000/30000, loss: 0.0514, lr: 0.002560, batch_cost: 7.2664, reader_cost: 6.93047, ips: 8.8077 samples/sec | ETA 36:19:54
+2022-03-08 00:54:12 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 86s 91ms/step - batch_cost: 0.0908 - reader cost: 0.066
+2022-03-08 00:55:39 [INFO]	[EVAL] #Images: 949 mIoU: 0.8558 Acc: 0.9456 Kappa: 0.8409 Dice: 0.9204
+2022-03-08 00:55:39 [INFO]	[EVAL] Class IoU: 
+[0.9327 0.7789]
+2022-03-08 00:55:39 [INFO]	[EVAL] Class Acc: 
+[0.9654 0.8749]
+2022-03-08 00:55:39 [INFO]	[EVAL] The model with the best validation mIoU (0.8558) was saved at iter 12000.
+2022-03-08 01:01:04 [INFO]	[TRAIN] epoch: 163, iter: 12050/30000, loss: 0.0529, lr: 0.002560, batch_cost: 6.4960, reader_cost: 6.15922, ips: 9.8522 samples/sec | ETA 32:23:23
+2022-03-08 01:07:06 [INFO]	[TRAIN] epoch: 164, iter: 12100/30000, loss: 0.0531, lr: 0.002560, batch_cost: 7.2566, reader_cost: 6.91941, ips: 8.8196 samples/sec | ETA 36:04:52
+2022-03-08 01:13:10 [INFO]	[TRAIN] epoch: 165, iter: 12150/30000, loss: 0.0530, lr: 0.002560, batch_cost: 7.2661, reader_cost: 6.92894, ips: 8.8080 samples/sec | ETA 36:01:40
+2022-03-08 01:19:19 [INFO]	[TRAIN] epoch: 165, iter: 12200/30000, loss: 0.0521, lr: 0.002560, batch_cost: 7.3866, reader_cost: 7.04861, ips: 8.6644 samples/sec | ETA 36:31:21
+2022-03-08 01:25:21 [INFO]	[TRAIN] epoch: 166, iter: 12250/30000, loss: 0.0530, lr: 0.002560, batch_cost: 7.2312, reader_cost: 6.89289, ips: 8.8505 samples/sec | ETA 35:39:13
+2022-03-08 01:31:19 [INFO]	[TRAIN] epoch: 167, iter: 12300/30000, loss: 0.0524, lr: 0.002560, batch_cost: 7.1779, reader_cost: 6.84131, ips: 8.9162 samples/sec | ETA 35:17:28
+2022-03-08 01:37:46 [INFO]	[TRAIN] epoch: 167, iter: 12350/30000, loss: 0.0526, lr: 0.002560, batch_cost: 7.7215, reader_cost: 7.38435, ips: 8.2886 samples/sec | ETA 37:51:23
+2022-03-08 01:43:29 [INFO]	[TRAIN] epoch: 168, iter: 12400/30000, loss: 0.0510, lr: 0.002560, batch_cost: 6.8652, reader_cost: 6.52911, ips: 9.3224 samples/sec | ETA 33:33:47
+2022-03-08 01:49:20 [INFO]	[TRAIN] epoch: 169, iter: 12450/30000, loss: 0.0528, lr: 0.002560, batch_cost: 7.0263, reader_cost: 6.68992, ips: 9.1086 samples/sec | ETA 34:15:11
+2022-03-08 01:55:33 [INFO]	[TRAIN] epoch: 169, iter: 12500/30000, loss: 0.0511, lr: 0.002560, batch_cost: 7.4494, reader_cost: 7.11108, ips: 8.5912 samples/sec | ETA 36:12:45
+2022-03-08 02:01:37 [INFO]	[TRAIN] epoch: 170, iter: 12550/30000, loss: 0.0521, lr: 0.002560, batch_cost: 7.2906, reader_cost: 6.95394, ips: 8.7784 samples/sec | ETA 35:20:21
+2022-03-08 02:07:55 [INFO]	[TRAIN] epoch: 171, iter: 12600/30000, loss: 0.0524, lr: 0.002560, batch_cost: 7.5487, reader_cost: 7.21163, ips: 8.4783 samples/sec | ETA 36:29:07
+2022-03-08 02:13:49 [INFO]	[TRAIN] epoch: 171, iter: 12650/30000, loss: 0.0518, lr: 0.002560, batch_cost: 7.0881, reader_cost: 6.75098, ips: 9.0293 samples/sec | ETA 34:09:37
+2022-03-08 02:19:48 [INFO]	[TRAIN] epoch: 172, iter: 12700/30000, loss: 0.0516, lr: 0.002560, batch_cost: 7.1746, reader_cost: 6.83685, ips: 8.9203 samples/sec | ETA 34:28:40
+2022-03-08 02:25:46 [INFO]	[TRAIN] epoch: 173, iter: 12750/30000, loss: 0.0509, lr: 0.002560, batch_cost: 7.1622, reader_cost: 6.82492, ips: 8.9358 samples/sec | ETA 34:19:08
+2022-03-08 02:31:53 [INFO]	[TRAIN] epoch: 173, iter: 12800/30000, loss: 0.0528, lr: 0.002560, batch_cost: 7.3413, reader_cost: 7.00429, ips: 8.7178 samples/sec | ETA 35:04:30
+2022-03-08 02:37:55 [INFO]	[TRAIN] epoch: 174, iter: 12850/30000, loss: 0.0506, lr: 0.002560, batch_cost: 7.2407, reader_cost: 6.90328, ips: 8.8389 samples/sec | ETA 34:29:38
+2022-03-08 02:43:52 [INFO]	[TRAIN] epoch: 175, iter: 12900/30000, loss: 0.0518, lr: 0.002560, batch_cost: 7.1342, reader_cost: 6.79734, ips: 8.9709 samples/sec | ETA 33:53:14
+2022-03-08 02:49:56 [INFO]	[TRAIN] epoch: 175, iter: 12950/30000, loss: 0.0506, lr: 0.002560, batch_cost: 7.2806, reader_cost: 6.94401, ips: 8.7905 samples/sec | ETA 34:28:53
+2022-03-08 02:55:59 [INFO]	[TRAIN] epoch: 176, iter: 13000/30000, loss: 0.0521, lr: 0.002560, batch_cost: 7.2629, reader_cost: 6.92602, ips: 8.8119 samples/sec | ETA 34:17:49
+2022-03-08 02:55:59 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 85s 89ms/step - batch_cost: 0.0891 - reader cost: 0.06
+2022-03-08 02:57:24 [INFO]	[EVAL] #Images: 949 mIoU: 0.8529 Acc: 0.9442 Kappa: 0.8374 Dice: 0.9187
+2022-03-08 02:57:24 [INFO]	[EVAL] Class IoU: 
+[0.9309 0.775 ]
+2022-03-08 02:57:24 [INFO]	[EVAL] Class Acc: 
+[0.9661 0.8671]
+2022-03-08 02:57:24 [INFO]	[EVAL] The model with the best validation mIoU (0.8558) was saved at iter 12000.
+2022-03-08 03:02:57 [INFO]	[TRAIN] epoch: 177, iter: 13050/30000, loss: 0.0505, lr: 0.002560, batch_cost: 6.6704, reader_cost: 6.33353, ips: 9.5946 samples/sec | ETA 31:24:23
+2022-03-08 03:08:48 [INFO]	[TRAIN] epoch: 178, iter: 13100/30000, loss: 0.0508, lr: 0.002560, batch_cost: 7.0208, reader_cost: 6.68310, ips: 9.1158 samples/sec | ETA 32:57:31
+2022-03-08 03:14:56 [INFO]	[TRAIN] epoch: 178, iter: 13150/30000, loss: 0.0507, lr: 0.002560, batch_cost: 7.3561, reader_cost: 7.01927, ips: 8.7003 samples/sec | ETA 34:25:50
+2022-03-08 03:21:01 [INFO]	[TRAIN] epoch: 179, iter: 13200/30000, loss: 0.0509, lr: 0.002560, batch_cost: 7.3093, reader_cost: 6.97241, ips: 8.7559 samples/sec | ETA 34:06:36
+2022-03-08 03:27:05 [INFO]	[TRAIN] epoch: 180, iter: 13250/30000, loss: 0.0515, lr: 0.002560, batch_cost: 7.2777, reader_cost: 6.94075, ips: 8.7940 samples/sec | ETA 33:51:41
+2022-03-08 03:33:10 [INFO]	[TRAIN] epoch: 180, iter: 13300/30000, loss: 0.0512, lr: 0.002560, batch_cost: 7.2886, reader_cost: 6.95206, ips: 8.7808 samples/sec | ETA 33:48:39
+2022-03-08 03:39:13 [INFO]	[TRAIN] epoch: 181, iter: 13350/30000, loss: 0.0512, lr: 0.002560, batch_cost: 7.2686, reader_cost: 6.93220, ips: 8.8049 samples/sec | ETA 33:37:02
+2022-03-08 03:45:08 [INFO]	[TRAIN] epoch: 182, iter: 13400/30000, loss: 0.0508, lr: 0.002560, batch_cost: 7.0915, reader_cost: 6.75480, ips: 9.0249 samples/sec | ETA 32:41:58
+2022-03-08 03:51:19 [INFO]	[TRAIN] epoch: 182, iter: 13450/30000, loss: 0.0513, lr: 0.002560, batch_cost: 7.4286, reader_cost: 7.09059, ips: 8.6153 samples/sec | ETA 34:09:03
+2022-03-08 03:57:09 [INFO]	[TRAIN] epoch: 183, iter: 13500/30000, loss: 0.0510, lr: 0.002560, batch_cost: 7.0034, reader_cost: 6.66605, ips: 9.1385 samples/sec | ETA 32:05:55
+2022-03-08 04:03:20 [INFO]	[TRAIN] epoch: 184, iter: 13550/30000, loss: 0.0510, lr: 0.002560, batch_cost: 7.4094, reader_cost: 7.07289, ips: 8.6377 samples/sec | ETA 33:51:24
+2022-03-08 04:09:11 [INFO]	[TRAIN] epoch: 184, iter: 13600/30000, loss: 0.0523, lr: 0.002560, batch_cost: 7.0221, reader_cost: 6.68500, ips: 9.1141 samples/sec | ETA 31:59:22
+2022-03-08 04:15:27 [INFO]	[TRAIN] epoch: 185, iter: 13650/30000, loss: 0.0507, lr: 0.002560, batch_cost: 7.5298, reader_cost: 7.19268, ips: 8.4996 samples/sec | ETA 34:11:51
+2022-03-08 04:21:35 [INFO]	[TRAIN] epoch: 186, iter: 13700/30000, loss: 0.0517, lr: 0.002560, batch_cost: 7.3437, reader_cost: 7.00660, ips: 8.7150 samples/sec | ETA 33:15:02
+2022-03-08 04:27:22 [INFO]	[TRAIN] epoch: 186, iter: 13750/30000, loss: 0.0519, lr: 0.002560, batch_cost: 6.9459, reader_cost: 6.60864, ips: 9.2140 samples/sec | ETA 31:21:11
+Epoch 13752: ReduceOnPlateau set learning rate to 0.0010240000000000002.
+2022-03-08 04:33:28 [INFO]	[TRAIN] epoch: 187, iter: 13800/30000, loss: 0.0512, lr: 0.001024, batch_cost: 7.3185, reader_cost: 6.98051, ips: 8.7450 samples/sec | ETA 32:55:59
+2022-03-08 04:39:42 [INFO]	[TRAIN] epoch: 188, iter: 13850/30000, loss: 0.0488, lr: 0.001024, batch_cost: 7.4854, reader_cost: 7.14883, ips: 8.5500 samples/sec | ETA 33:34:48
+2022-03-08 04:45:24 [INFO]	[TRAIN] epoch: 188, iter: 13900/30000, loss: 0.0480, lr: 0.001024, batch_cost: 6.8475, reader_cost: 6.51044, ips: 9.3465 samples/sec | ETA 30:37:24
+2022-03-08 04:51:32 [INFO]	[TRAIN] epoch: 189, iter: 13950/30000, loss: 0.0495, lr: 0.001024, batch_cost: 7.3610, reader_cost: 7.02403, ips: 8.6945 samples/sec | ETA 32:49:03
+2022-03-08 04:57:36 [INFO]	[TRAIN] epoch: 190, iter: 14000/30000, loss: 0.0495, lr: 0.001024, batch_cost: 7.2728, reader_cost: 6.93533, ips: 8.7999 samples/sec | ETA 32:19:24
+2022-03-08 04:57:36 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 85s 90ms/step - batch_cost: 0.0899 - reader cost: 0.06
+2022-03-08 04:59:02 [INFO]	[EVAL] #Images: 949 mIoU: 0.8545 Acc: 0.9445 Kappa: 0.8395 Dice: 0.9197
+2022-03-08 04:59:02 [INFO]	[EVAL] Class IoU: 
+[0.9311 0.778 ]
+2022-03-08 04:59:02 [INFO]	[EVAL] Class Acc: 
+[0.9689 0.8608]
+2022-03-08 04:59:02 [INFO]	[EVAL] The model with the best validation mIoU (0.8558) was saved at iter 12000.
+2022-03-08 05:04:21 [INFO]	[TRAIN] epoch: 190, iter: 14050/30000, loss: 0.0496, lr: 0.001024, batch_cost: 6.3814, reader_cost: 6.04404, ips: 10.0292 samples/sec | ETA 28:16:22
+2022-03-08 05:10:23 [INFO]	[TRAIN] epoch: 191, iter: 14100/30000, loss: 0.0488, lr: 0.001024, batch_cost: 7.2364, reader_cost: 6.89952, ips: 8.8442 samples/sec | ETA 31:57:38
+2022-03-08 05:16:32 [INFO]	[TRAIN] epoch: 192, iter: 14150/30000, loss: 0.0489, lr: 0.001024, batch_cost: 7.3892, reader_cost: 7.05261, ips: 8.6613 samples/sec | ETA 32:31:59
+2022-03-08 05:22:27 [INFO]	[TRAIN] epoch: 192, iter: 14200/30000, loss: 0.0502, lr: 0.001024, batch_cost: 7.1007, reader_cost: 6.76407, ips: 9.0132 samples/sec | ETA 31:09:51
+2022-03-08 05:28:33 [INFO]	[TRAIN] epoch: 193, iter: 14250/30000, loss: 0.0488, lr: 0.001024, batch_cost: 7.3211, reader_cost: 6.98411, ips: 8.7418 samples/sec | ETA 32:01:47
+2022-03-08 05:34:25 [INFO]	[TRAIN] epoch: 194, iter: 14300/30000, loss: 0.0472, lr: 0.001024, batch_cost: 7.0379, reader_cost: 6.70155, ips: 9.0936 samples/sec | ETA 30:41:35
+2022-03-08 05:40:36 [INFO]	[TRAIN] epoch: 194, iter: 14350/30000, loss: 0.0478, lr: 0.001024, batch_cost: 7.4129, reader_cost: 7.07600, ips: 8.6336 samples/sec | ETA 32:13:31
+2022-03-08 05:46:39 [INFO]	[TRAIN] epoch: 195, iter: 14400/30000, loss: 0.0485, lr: 0.001024, batch_cost: 7.2704, reader_cost: 6.93353, ips: 8.8028 samples/sec | ETA 31:30:18
+2022-03-08 05:52:52 [INFO]	[TRAIN] epoch: 196, iter: 14450/30000, loss: 0.0485, lr: 0.001024, batch_cost: 7.4565, reader_cost: 7.11977, ips: 8.5832 samples/sec | ETA 32:12:27
+2022-03-08 05:58:46 [INFO]	[TRAIN] epoch: 196, iter: 14500/30000, loss: 0.0478, lr: 0.001024, batch_cost: 7.0800, reader_cost: 6.74291, ips: 9.0395 samples/sec | ETA 30:29:00
+2022-03-08 06:04:46 [INFO]	[TRAIN] epoch: 197, iter: 14550/30000, loss: 0.0478, lr: 0.001024, batch_cost: 7.2075, reader_cost: 6.87071, ips: 8.8796 samples/sec | ETA 30:55:56
+2022-03-08 06:10:48 [INFO]	[TRAIN] epoch: 198, iter: 14600/30000, loss: 0.0490, lr: 0.001024, batch_cost: 7.2255, reader_cost: 6.88860, ips: 8.8575 samples/sec | ETA 30:54:33
+2022-03-08 06:16:39 [INFO]	[TRAIN] epoch: 198, iter: 14650/30000, loss: 0.0486, lr: 0.001024, batch_cost: 7.0293, reader_cost: 6.69235, ips: 9.1047 samples/sec | ETA 29:58:19
+2022-03-08 06:22:48 [INFO]	[TRAIN] epoch: 199, iter: 14700/30000, loss: 0.0480, lr: 0.001024, batch_cost: 7.3877, reader_cost: 7.05082, ips: 8.6630 samples/sec | ETA 31:23:51
+2022-03-08 06:28:42 [INFO]	[TRAIN] epoch: 200, iter: 14750/30000, loss: 0.0478, lr: 0.001024, batch_cost: 7.0743, reader_cost: 6.73707, ips: 9.0468 samples/sec | ETA 29:58:03
+2022-03-08 06:34:56 [INFO]	[TRAIN] epoch: 200, iter: 14800/30000, loss: 0.0494, lr: 0.001024, batch_cost: 7.4734, reader_cost: 7.13648, ips: 8.5637 samples/sec | ETA 31:33:15
+2022-03-08 06:40:55 [INFO]	[TRAIN] epoch: 201, iter: 14850/30000, loss: 0.0486, lr: 0.001024, batch_cost: 7.1862, reader_cost: 6.84927, ips: 8.9060 samples/sec | ETA 30:14:30
+2022-03-08 06:46:52 [INFO]	[TRAIN] epoch: 202, iter: 14900/30000, loss: 0.0487, lr: 0.001024, batch_cost: 7.1403, reader_cost: 6.80264, ips: 8.9632 samples/sec | ETA 29:56:58
+2022-03-08 06:52:48 [INFO]	[TRAIN] epoch: 203, iter: 14950/30000, loss: 0.0486, lr: 0.001024, batch_cost: 7.1145, reader_cost: 6.77749, ips: 8.9957 samples/sec | ETA 29:44:32
+2022-03-08 06:59:00 [INFO]	[TRAIN] epoch: 203, iter: 15000/30000, loss: 0.0480, lr: 0.001024, batch_cost: 7.4467, reader_cost: 7.10935, ips: 8.5944 samples/sec | ETA 31:01:40
+2022-03-08 06:59:00 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 84s 89ms/step - batch_cost: 0.0887 - reader cost: 0.06
+2022-03-08 07:00:25 [INFO]	[EVAL] #Images: 949 mIoU: 0.8540 Acc: 0.9447 Kappa: 0.8388 Dice: 0.9194
+2022-03-08 07:00:25 [INFO]	[EVAL] Class IoU: 
+[0.9316 0.7765]
+2022-03-08 07:00:25 [INFO]	[EVAL] Class Acc: 
+[0.9659 0.8701]
+2022-03-08 07:00:25 [INFO]	[EVAL] The model with the best validation mIoU (0.8558) was saved at iter 12000.
+2022-03-08 07:05:59 [INFO]	[TRAIN] epoch: 204, iter: 15050/30000, loss: 0.0485, lr: 0.001024, batch_cost: 6.6870, reader_cost: 6.34977, ips: 9.5709 samples/sec | ETA 27:46:10
+2022-03-08 07:12:11 [INFO]	[TRAIN] epoch: 205, iter: 15100/30000, loss: 0.0481, lr: 0.001024, batch_cost: 7.4439, reader_cost: 7.10667, ips: 8.5976 samples/sec | ETA 30:48:34
+2022-03-08 07:18:07 [INFO]	[TRAIN] epoch: 205, iter: 15150/30000, loss: 0.0479, lr: 0.001024, batch_cost: 7.1125, reader_cost: 6.77545, ips: 8.9982 samples/sec | ETA 29:20:20
+2022-03-08 07:23:59 [INFO]	[TRAIN] epoch: 206, iter: 15200/30000, loss: 0.0477, lr: 0.001024, batch_cost: 7.0381, reader_cost: 6.70114, ips: 9.0934 samples/sec | ETA 28:56:03
+2022-03-08 07:30:17 [INFO]	[TRAIN] epoch: 207, iter: 15250/30000, loss: 0.0480, lr: 0.001024, batch_cost: 7.5622, reader_cost: 7.22539, ips: 8.4631 samples/sec | ETA 30:59:02
+2022-03-08 07:36:09 [INFO]	[TRAIN] epoch: 207, iter: 15300/30000, loss: 0.0487, lr: 0.001024, batch_cost: 7.0384, reader_cost: 6.70185, ips: 9.0930 samples/sec | ETA 28:44:24
+2022-03-08 07:42:21 [INFO]	[TRAIN] epoch: 208, iter: 15350/30000, loss: 0.0479, lr: 0.001024, batch_cost: 7.4488, reader_cost: 7.11207, ips: 8.5920 samples/sec | ETA 30:18:44
+2022-03-08 07:48:29 [INFO]	[TRAIN] epoch: 209, iter: 15400/30000, loss: 0.0481, lr: 0.001024, batch_cost: 7.3467, reader_cost: 7.01009, ips: 8.7114 samples/sec | ETA 29:47:41
+2022-03-08 07:54:07 [INFO]	[TRAIN] epoch: 209, iter: 15450/30000, loss: 0.0479, lr: 0.001024, batch_cost: 6.7778, reader_cost: 6.44143, ips: 9.4426 samples/sec | ETA 27:23:37
+2022-03-08 08:00:16 [INFO]	[TRAIN] epoch: 210, iter: 15500/30000, loss: 0.0460, lr: 0.001024, batch_cost: 7.3657, reader_cost: 7.02776, ips: 8.6889 samples/sec | ETA 29:40:02
+2022-03-08 08:06:16 [INFO]	[TRAIN] epoch: 211, iter: 15550/30000, loss: 0.0475, lr: 0.001024, batch_cost: 7.2099, reader_cost: 6.87272, ips: 8.8767 samples/sec | ETA 28:56:22
+2022-03-08 08:12:21 [INFO]	[TRAIN] epoch: 211, iter: 15600/30000, loss: 0.0474, lr: 0.001024, batch_cost: 7.2910, reader_cost: 6.95436, ips: 8.7779 samples/sec | ETA 29:09:51
+2022-03-08 08:18:23 [INFO]	[TRAIN] epoch: 212, iter: 15650/30000, loss: 0.0473, lr: 0.001024, batch_cost: 7.2442, reader_cost: 6.90731, ips: 8.8346 samples/sec | ETA 28:52:34
+2022-03-08 08:24:26 [INFO]	[TRAIN] epoch: 213, iter: 15700/30000, loss: 0.0476, lr: 0.001024, batch_cost: 7.2530, reader_cost: 6.91606, ips: 8.8239 samples/sec | ETA 28:48:37
+2022-03-08 08:30:27 [INFO]	[TRAIN] epoch: 213, iter: 15750/30000, loss: 0.0469, lr: 0.001024, batch_cost: 7.2241, reader_cost: 6.88722, ips: 8.8592 samples/sec | ETA 28:35:44
+Epoch 15752: ReduceOnPlateau set learning rate to 0.0004096000000000001.
+2022-03-08 08:36:24 [INFO]	[TRAIN] epoch: 214, iter: 15800/30000, loss: 0.0474, lr: 0.000410, batch_cost: 7.1508, reader_cost: 6.81355, ips: 8.9501 samples/sec | ETA 28:12:20
+2022-03-08 08:42:23 [INFO]	[TRAIN] epoch: 215, iter: 15850/30000, loss: 0.0465, lr: 0.000410, batch_cost: 7.1768, reader_cost: 6.83988, ips: 8.9176 samples/sec | ETA 28:12:31
+2022-03-08 08:48:29 [INFO]	[TRAIN] epoch: 215, iter: 15900/30000, loss: 0.0463, lr: 0.000410, batch_cost: 7.3091, reader_cost: 6.97268, ips: 8.7562 samples/sec | ETA 28:37:37
+2022-03-08 08:54:21 [INFO]	[TRAIN] epoch: 216, iter: 15950/30000, loss: 0.0480, lr: 0.000410, batch_cost: 7.0375, reader_cost: 6.70000, ips: 9.0941 samples/sec | ETA 27:27:56
+2022-03-08 09:00:32 [INFO]	[TRAIN] epoch: 217, iter: 16000/30000, loss: 0.0467, lr: 0.000410, batch_cost: 7.4215, reader_cost: 7.08484, ips: 8.6236 samples/sec | ETA 28:51:41
+2022-03-08 09:00:32 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 84s 89ms/step - batch_cost: 0.0887 - reader cost: 0.06
+2022-03-08 09:01:56 [INFO]	[EVAL] #Images: 949 mIoU: 0.8532 Acc: 0.9438 Kappa: 0.8379 Dice: 0.9189
+2022-03-08 09:01:56 [INFO]	[EVAL] Class IoU: 
+[0.9301 0.7763]
+2022-03-08 09:01:56 [INFO]	[EVAL] Class Acc: 
+[0.9696 0.8561]
+2022-03-08 09:01:56 [INFO]	[EVAL] The model with the best validation mIoU (0.8558) was saved at iter 12000.
+2022-03-08 09:08:56 [INFO]	[TRAIN] epoch: 217, iter: 16050/30000, loss: 0.0467, lr: 0.000410, batch_cost: 7.2267, reader_cost: 6.88714, ips: 8.8561 samples/sec | ETA 28:00:11
+2022-03-08 09:14:55 [INFO]	[TRAIN] epoch: 218, iter: 16100/30000, loss: 0.0455, lr: 0.000410, batch_cost: 7.1854, reader_cost: 6.84642, ips: 8.9070 samples/sec | ETA 27:44:36
+2022-03-08 09:20:47 [INFO]	[TRAIN] epoch: 219, iter: 16150/30000, loss: 0.0469, lr: 0.000410, batch_cost: 7.0335, reader_cost: 6.69531, ips: 9.0994 samples/sec | ETA 27:03:33
+2022-03-08 09:26:36 [INFO]	[TRAIN] epoch: 219, iter: 16200/30000, loss: 0.0459, lr: 0.000410, batch_cost: 6.9899, reader_cost: 6.65177, ips: 9.1560 samples/sec | ETA 26:47:40
+2022-03-08 09:32:28 [INFO]	[TRAIN] epoch: 220, iter: 16250/30000, loss: 0.0460, lr: 0.000410, batch_cost: 7.0250, reader_cost: 6.68757, ips: 9.1103 samples/sec | ETA 26:49:53
+2022-03-08 09:38:08 [INFO]	[TRAIN] epoch: 221, iter: 16300/30000, loss: 0.0468, lr: 0.000410, batch_cost: 6.8162, reader_cost: 6.47843, ips: 9.3894 samples/sec | ETA 25:56:21
+2022-03-08 09:43:48 [INFO]	[TRAIN] epoch: 221, iter: 16350/30000, loss: 0.0461, lr: 0.000410, batch_cost: 6.7960, reader_cost: 6.45741, ips: 9.4173 samples/sec | ETA 25:46:05
+2022-03-08 09:49:57 [INFO]	[TRAIN] epoch: 222, iter: 16400/30000, loss: 0.0458, lr: 0.000410, batch_cost: 7.3755, reader_cost: 7.03693, ips: 8.6774 samples/sec | ETA 27:51:47
+2022-03-08 09:55:51 [INFO]	[TRAIN] epoch: 223, iter: 16450/30000, loss: 0.0471, lr: 0.000410, batch_cost: 7.0768, reader_cost: 6.73799, ips: 9.0436 samples/sec | ETA 26:38:10
+2022-03-08 10:01:48 [INFO]	[TRAIN] epoch: 223, iter: 16500/30000, loss: 0.0465, lr: 0.000410, batch_cost: 7.1492, reader_cost: 6.81069, ips: 8.9520 samples/sec | ETA 26:48:34
+2022-03-08 10:07:28 [INFO]	[TRAIN] epoch: 224, iter: 16550/30000, loss: 0.0472, lr: 0.000410, batch_cost: 6.7909, reader_cost: 6.45256, ips: 9.4244 samples/sec | ETA 25:22:16
+2022-03-08 10:13:24 [INFO]	[TRAIN] epoch: 225, iter: 16600/30000, loss: 0.0459, lr: 0.000410, batch_cost: 7.1254, reader_cost: 6.78702, ips: 8.9819 samples/sec | ETA 26:31:20
+2022-03-08 10:19:15 [INFO]	[TRAIN] epoch: 225, iter: 16650/30000, loss: 0.0463, lr: 0.000410, batch_cost: 7.0088, reader_cost: 6.67018, ips: 9.1314 samples/sec | ETA 25:59:27
+2022-03-08 10:25:13 [INFO]	[TRAIN] epoch: 226, iter: 16700/30000, loss: 0.0468, lr: 0.000410, batch_cost: 7.1600, reader_cost: 6.82125, ips: 8.9386 samples/sec | ETA 26:27:07
+2022-03-08 10:31:01 [INFO]	[TRAIN] epoch: 227, iter: 16750/30000, loss: 0.0453, lr: 0.000410, batch_cost: 6.9660, reader_cost: 6.62709, ips: 9.1875 samples/sec | ETA 25:38:19
+2022-03-08 10:36:56 [INFO]	[TRAIN] epoch: 228, iter: 16800/30000, loss: 0.0469, lr: 0.000410, batch_cost: 7.0929, reader_cost: 6.75393, ips: 9.0231 samples/sec | ETA 26:00:25
+2022-03-08 10:42:55 [INFO]	[TRAIN] epoch: 228, iter: 16850/30000, loss: 0.0463, lr: 0.000410, batch_cost: 7.1925, reader_cost: 6.85345, ips: 8.8981 samples/sec | ETA 26:16:21
+2022-03-08 10:48:58 [INFO]	[TRAIN] epoch: 229, iter: 16900/30000, loss: 0.0465, lr: 0.000410, batch_cost: 7.2549, reader_cost: 6.91597, ips: 8.8217 samples/sec | ETA 26:23:58
+2022-03-08 10:54:46 [INFO]	[TRAIN] epoch: 230, iter: 16950/30000, loss: 0.0468, lr: 0.000410, batch_cost: 6.9581, reader_cost: 6.61914, ips: 9.1979 samples/sec | ETA 25:13:23
+2022-03-08 11:00:43 [INFO]	[TRAIN] epoch: 230, iter: 17000/30000, loss: 0.0460, lr: 0.000410, batch_cost: 7.1524, reader_cost: 6.81355, ips: 8.9481 samples/sec | ETA 25:49:40
+2022-03-08 11:00:43 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 87s 91ms/step - batch_cost: 0.0913 - reader cost: 0.067
+2022-03-08 11:02:10 [INFO]	[EVAL] #Images: 949 mIoU: 0.8542 Acc: 0.9444 Kappa: 0.8390 Dice: 0.9195
+2022-03-08 11:02:10 [INFO]	[EVAL] Class IoU: 
+[0.9311 0.7773]
+2022-03-08 11:02:10 [INFO]	[EVAL] Class Acc: 
+[0.9681 0.8626]
+2022-03-08 11:02:10 [INFO]	[EVAL] The model with the best validation mIoU (0.8542) was saved at iter 17000.
+2022-03-08 11:09:46 [INFO]	[TRAIN] epoch: 231, iter: 17050/30000, loss: 0.0464, lr: 0.000410, batch_cost: 7.1935, reader_cost: 6.85476, ips: 8.8969 samples/sec | ETA 25:52:35
+2022-03-08 11:15:36 [INFO]	[TRAIN] epoch: 232, iter: 17100/30000, loss: 0.0458, lr: 0.000410, batch_cost: 7.0040, reader_cost: 6.66669, ips: 9.1377 samples/sec | ETA 25:05:51
+2022-03-08 11:21:26 [INFO]	[TRAIN] epoch: 232, iter: 17150/30000, loss: 0.0462, lr: 0.000410, batch_cost: 6.9909, reader_cost: 6.65312, ips: 9.1548 samples/sec | ETA 24:57:12
+2022-03-08 11:27:17 [INFO]	[TRAIN] epoch: 233, iter: 17200/30000, loss: 0.0461, lr: 0.000410, batch_cost: 7.0156, reader_cost: 6.67898, ips: 9.1225 samples/sec | ETA 24:56:40
+2022-03-08 11:33:10 [INFO]	[TRAIN] epoch: 234, iter: 17250/30000, loss: 0.0464, lr: 0.000410, batch_cost: 7.0635, reader_cost: 6.72673, ips: 9.0606 samples/sec | ETA 25:01:00
+Epoch 17253: ReduceOnPlateau set learning rate to 0.00016384000000000006.
+2022-03-08 11:38:54 [INFO]	[TRAIN] epoch: 234, iter: 17300/30000, loss: 0.0462, lr: 0.000164, batch_cost: 6.8813, reader_cost: 6.54487, ips: 9.3006 samples/sec | ETA 24:16:32
+2022-03-08 11:44:36 [INFO]	[TRAIN] epoch: 235, iter: 17350/30000, loss: 0.0461, lr: 0.000164, batch_cost: 6.8348, reader_cost: 6.49762, ips: 9.3639 samples/sec | ETA 24:00:59
+2022-03-08 11:50:33 [INFO]	[TRAIN] epoch: 236, iter: 17400/30000, loss: 0.0457, lr: 0.000164, batch_cost: 7.1520, reader_cost: 6.81528, ips: 8.9485 samples/sec | ETA 25:01:55
+2022-03-08 11:56:21 [INFO]	[TRAIN] epoch: 236, iter: 17450/30000, loss: 0.0463, lr: 0.000164, batch_cost: 6.9616, reader_cost: 6.62489, ips: 9.1933 samples/sec | ETA 24:16:08
+2022-03-08 12:02:22 [INFO]	[TRAIN] epoch: 237, iter: 17500/30000, loss: 0.0458, lr: 0.000164, batch_cost: 7.2170, reader_cost: 6.88032, ips: 8.8679 samples/sec | ETA 25:03:32
+2022-03-08 12:08:03 [INFO]	[TRAIN] epoch: 238, iter: 17550/30000, loss: 0.0460, lr: 0.000164, batch_cost: 6.8092, reader_cost: 6.47203, ips: 9.3990 samples/sec | ETA 23:32:55
+2022-03-08 12:14:00 [INFO]	[TRAIN] epoch: 238, iter: 17600/30000, loss: 0.0467, lr: 0.000164, batch_cost: 7.1401, reader_cost: 6.80347, ips: 8.9634 samples/sec | ETA 24:35:37
+2022-03-08 12:19:46 [INFO]	[TRAIN] epoch: 239, iter: 17650/30000, loss: 0.0465, lr: 0.000164, batch_cost: 6.9177, reader_cost: 6.58095, ips: 9.2516 samples/sec | ETA 23:43:53
+2022-03-08 12:25:35 [INFO]	[TRAIN] epoch: 240, iter: 17700/30000, loss: 0.0465, lr: 0.000164, batch_cost: 6.9885, reader_cost: 6.65257, ips: 9.1579 samples/sec | ETA 23:52:38
+2022-03-08 12:31:19 [INFO]	[TRAIN] epoch: 240, iter: 17750/30000, loss: 0.0446, lr: 0.000164, batch_cost: 6.8722, reader_cost: 6.53573, ips: 9.3128 samples/sec | ETA 23:23:05
+2022-03-08 12:37:10 [INFO]	[TRAIN] epoch: 241, iter: 17800/30000, loss: 0.0457, lr: 0.000164, batch_cost: 7.0341, reader_cost: 6.69717, ips: 9.0986 samples/sec | ETA 23:50:15
+2022-03-08 12:42:59 [INFO]	[TRAIN] epoch: 242, iter: 17850/30000, loss: 0.0458, lr: 0.000164, batch_cost: 6.9833, reader_cost: 6.64702, ips: 9.1647 samples/sec | ETA 23:34:07
+2022-03-08 12:48:47 [INFO]	[TRAIN] epoch: 242, iter: 17900/30000, loss: 0.0453, lr: 0.000164, batch_cost: 6.9572, reader_cost: 6.62083, ips: 9.1991 samples/sec | ETA 23:23:02
+2022-03-08 12:54:24 [INFO]	[TRAIN] epoch: 243, iter: 17950/30000, loss: 0.0458, lr: 0.000164, batch_cost: 6.7380, reader_cost: 6.40219, ips: 9.4984 samples/sec | ETA 22:33:12
+2022-03-08 13:00:11 [INFO]	[TRAIN] epoch: 244, iter: 18000/30000, loss: 0.0453, lr: 0.000164, batch_cost: 6.9326, reader_cost: 6.59702, ips: 9.2317 samples/sec | ETA 23:06:31
+2022-03-08 13:00:11 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 82s 86ms/step - batch_cost: 0.0858 - reader cost: 0.06
+2022-03-08 13:01:32 [INFO]	[EVAL] #Images: 949 mIoU: 0.8546 Acc: 0.9447 Kappa: 0.8395 Dice: 0.9198
+2022-03-08 13:01:32 [INFO]	[EVAL] Class IoU: 
+[0.9315 0.7778]
+2022-03-08 13:01:32 [INFO]	[EVAL] Class Acc: 
+[0.9676 0.8654]
+2022-03-08 13:01:33 [INFO]	[EVAL] The model with the best validation mIoU (0.8546) was saved at iter 18000.
+2022-03-08 13:09:05 [INFO]	[TRAIN] epoch: 244, iter: 18050/30000, loss: 0.0464, lr: 0.000164, batch_cost: 7.1799, reader_cost: 6.84219, ips: 8.9138 samples/sec | ETA 23:49:59
+2022-03-08 13:15:00 [INFO]	[TRAIN] epoch: 245, iter: 18100/30000, loss: 0.0452, lr: 0.000164, batch_cost: 7.1007, reader_cost: 6.76376, ips: 9.0131 samples/sec | ETA 23:28:18
+2022-03-08 13:20:48 [INFO]	[TRAIN] epoch: 246, iter: 18150/30000, loss: 0.0463, lr: 0.000164, batch_cost: 6.9604, reader_cost: 6.62371, ips: 9.1949 samples/sec | ETA 22:54:40
+2022-03-08 13:26:35 [INFO]	[TRAIN] epoch: 246, iter: 18200/30000, loss: 0.0454, lr: 0.000164, batch_cost: 6.9405, reader_cost: 6.60420, ips: 9.2212 samples/sec | ETA 22:44:58
+2022-03-08 13:32:24 [INFO]	[TRAIN] epoch: 247, iter: 18250/30000, loss: 0.0455, lr: 0.000164, batch_cost: 6.9873, reader_cost: 6.65050, ips: 9.1595 samples/sec | ETA 22:48:20
+2022-03-08 13:38:05 [INFO]	[TRAIN] epoch: 248, iter: 18300/30000, loss: 0.0456, lr: 0.000164, batch_cost: 6.8234, reader_cost: 6.48723, ips: 9.3794 samples/sec | ETA 22:10:34
+2022-03-08 13:43:46 [INFO]	[TRAIN] epoch: 248, iter: 18350/30000, loss: 0.0450, lr: 0.000164, batch_cost: 6.8098, reader_cost: 6.47278, ips: 9.3983 samples/sec | ETA 22:02:13
+2022-03-08 13:49:42 [INFO]	[TRAIN] epoch: 249, iter: 18400/30000, loss: 0.0454, lr: 0.000164, batch_cost: 7.1151, reader_cost: 6.77734, ips: 8.9950 samples/sec | ETA 22:55:34
+2022-03-08 13:55:28 [INFO]	[TRAIN] epoch: 250, iter: 18450/30000, loss: 0.0469, lr: 0.000164, batch_cost: 6.9194, reader_cost: 6.58256, ips: 9.2494 samples/sec | ETA 22:11:58
+2022-03-08 14:01:27 [INFO]	[TRAIN] epoch: 250, iter: 18500/30000, loss: 0.0456, lr: 0.000164, batch_cost: 7.1852, reader_cost: 6.84841, ips: 8.9072 samples/sec | ETA 22:57:09
+2022-03-08 14:07:05 [INFO]	[TRAIN] epoch: 251, iter: 18550/30000, loss: 0.0458, lr: 0.000164, batch_cost: 6.7590, reader_cost: 6.42153, ips: 9.4688 samples/sec | ETA 21:29:50
+2022-03-08 14:13:01 [INFO]	[TRAIN] epoch: 252, iter: 18600/30000, loss: 0.0455, lr: 0.000164, batch_cost: 7.1197, reader_cost: 6.78191, ips: 8.9892 samples/sec | ETA 22:32:44
+2022-03-08 14:18:44 [INFO]	[TRAIN] epoch: 253, iter: 18650/30000, loss: 0.0460, lr: 0.000164, batch_cost: 6.8582, reader_cost: 6.52173, ips: 9.3319 samples/sec | ETA 21:37:20
+2022-03-08 14:24:37 [INFO]	[TRAIN] epoch: 253, iter: 18700/30000, loss: 0.0461, lr: 0.000164, batch_cost: 7.0743, reader_cost: 6.73763, ips: 9.0468 samples/sec | ETA 22:12:19
+2022-03-08 14:30:25 [INFO]	[TRAIN] epoch: 254, iter: 18750/30000, loss: 0.0453, lr: 0.000164, batch_cost: 6.9604, reader_cost: 6.62389, ips: 9.1949 samples/sec | ETA 21:45:04
+Epoch 18754: ReduceOnPlateau set learning rate to 6.553600000000003e-05.
+2022-03-08 14:36:22 [INFO]	[TRAIN] epoch: 255, iter: 18800/30000, loss: 0.0453, lr: 0.000066, batch_cost: 7.1400, reader_cost: 6.80317, ips: 8.9636 samples/sec | ETA 22:12:47
+2022-03-08 14:42:24 [INFO]	[TRAIN] epoch: 255, iter: 18850/30000, loss: 0.0454, lr: 0.000066, batch_cost: 7.2344, reader_cost: 6.89741, ips: 8.8467 samples/sec | ETA 22:24:23
+2022-03-08 14:48:24 [INFO]	[TRAIN] epoch: 256, iter: 18900/30000, loss: 0.0452, lr: 0.000066, batch_cost: 7.1945, reader_cost: 6.85661, ips: 8.8957 samples/sec | ETA 22:10:58
+2022-03-08 14:54:10 [INFO]	[TRAIN] epoch: 257, iter: 18950/30000, loss: 0.0459, lr: 0.000066, batch_cost: 6.9238, reader_cost: 6.58593, ips: 9.2435 samples/sec | ETA 21:15:07
+2022-03-08 15:00:08 [INFO]	[TRAIN] epoch: 257, iter: 19000/30000, loss: 0.0451, lr: 0.000066, batch_cost: 7.1538, reader_cost: 6.81597, ips: 8.9462 samples/sec | ETA 21:51:32
+2022-03-08 15:00:08 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 83s 87ms/step - batch_cost: 0.0872 - reader cost: 0.062
+2022-03-08 15:01:31 [INFO]	[EVAL] #Images: 949 mIoU: 0.8550 Acc: 0.9449 Kappa: 0.8400 Dice: 0.9200
+2022-03-08 15:01:31 [INFO]	[EVAL] Class IoU: 
+[0.9317 0.7783]
+2022-03-08 15:01:31 [INFO]	[EVAL] Class Acc: 
+[0.9676 0.8661]
+2022-03-08 15:01:31 [INFO]	[EVAL] The model with the best validation mIoU (0.8550) was saved at iter 19000.
+2022-03-08 15:14:15 [INFO]	[TRAIN] epoch: 258, iter: 19050/30000, loss: 0.0454, lr: 0.000066, batch_cost: 7.4414, reader_cost: 7.10240, ips: 8.6006 samples/sec | ETA 22:38:03
+2022-03-08 15:20:21 [INFO]	[TRAIN] epoch: 259, iter: 19100/30000, loss: 0.0452, lr: 0.000066, batch_cost: 7.3182, reader_cost: 6.98133, ips: 8.7453 samples/sec | ETA 22:09:28
+2022-03-08 15:26:24 [INFO]	[TRAIN] epoch: 259, iter: 19150/30000, loss: 0.0462, lr: 0.000066, batch_cost: 7.2598, reader_cost: 6.92299, ips: 8.8157 samples/sec | ETA 21:52:48
+2022-03-08 15:32:31 [INFO]	[TRAIN] epoch: 260, iter: 19200/30000, loss: 0.0453, lr: 0.000066, batch_cost: 7.3539, reader_cost: 7.01680, ips: 8.7029 samples/sec | ETA 22:03:42
+2022-03-08 15:38:38 [INFO]	[TRAIN] epoch: 261, iter: 19250/30000, loss: 0.0464, lr: 0.000066, batch_cost: 7.3257, reader_cost: 6.98844, ips: 8.7363 samples/sec | ETA 21:52:31
+2022-03-08 15:44:26 [INFO]	[TRAIN] epoch: 261, iter: 19300/30000, loss: 0.0451, lr: 0.000066, batch_cost: 6.9768, reader_cost: 6.63997, ips: 9.1733 samples/sec | ETA 20:44:11
+2022-03-08 15:50:16 [INFO]	[TRAIN] epoch: 262, iter: 19350/30000, loss: 0.0454, lr: 0.000066, batch_cost: 6.9939, reader_cost: 6.65639, ips: 9.1508 samples/sec | ETA 20:41:25
+2022-03-08 15:56:35 [INFO]	[TRAIN] epoch: 263, iter: 19400/30000, loss: 0.0455, lr: 0.000066, batch_cost: 7.5750, reader_cost: 7.23769, ips: 8.4488 samples/sec | ETA 22:18:15
+2022-03-08 16:02:29 [INFO]	[TRAIN] epoch: 263, iter: 19450/30000, loss: 0.0457, lr: 0.000066, batch_cost: 7.0885, reader_cost: 6.75146, ips: 9.0287 samples/sec | ETA 20:46:24
+2022-03-08 16:08:35 [INFO]	[TRAIN] epoch: 264, iter: 19500/30000, loss: 0.0453, lr: 0.000066, batch_cost: 7.3114, reader_cost: 6.97488, ips: 8.7535 samples/sec | ETA 21:19:29
+2022-03-08 16:14:16 [INFO]	[TRAIN] epoch: 265, iter: 19550/30000, loss: 0.0470, lr: 0.000066, batch_cost: 6.8328, reader_cost: 6.49599, ips: 9.3665 samples/sec | ETA 19:50:03
+2022-03-08 16:20:13 [INFO]	[TRAIN] epoch: 265, iter: 19600/30000, loss: 0.0457, lr: 0.000066, batch_cost: 7.1240, reader_cost: 6.78721, ips: 8.9837 samples/sec | ETA 20:34:50
+2022-03-08 16:25:59 [INFO]	[TRAIN] epoch: 266, iter: 19650/30000, loss: 0.0454, lr: 0.000066, batch_cost: 6.9353, reader_cost: 6.59938, ips: 9.2282 samples/sec | ETA 19:56:20
+2022-03-08 16:31:53 [INFO]	[TRAIN] epoch: 267, iter: 19700/30000, loss: 0.0465, lr: 0.000066, batch_cost: 7.0644, reader_cost: 6.72782, ips: 9.0595 samples/sec | ETA 20:12:43
+2022-03-08 16:37:40 [INFO]	[TRAIN] epoch: 267, iter: 19750/30000, loss: 0.0449, lr: 0.000066, batch_cost: 6.9390, reader_cost: 6.60251, ips: 9.2233 samples/sec | ETA 19:45:24
+2022-03-08 16:43:36 [INFO]	[TRAIN] epoch: 268, iter: 19800/30000, loss: 0.0454, lr: 0.000066, batch_cost: 7.1226, reader_cost: 6.78485, ips: 8.9855 samples/sec | ETA 20:10:50
+2022-03-08 16:49:30 [INFO]	[TRAIN] epoch: 269, iter: 19850/30000, loss: 0.0452, lr: 0.000066, batch_cost: 7.0756, reader_cost: 6.73849, ips: 9.0451 samples/sec | ETA 19:56:57
+2022-03-08 16:55:18 [INFO]	[TRAIN] epoch: 269, iter: 19900/30000, loss: 0.0449, lr: 0.000066, batch_cost: 6.9712, reader_cost: 6.63375, ips: 9.1806 samples/sec | ETA 19:33:29
+2022-03-08 17:00:56 [INFO]	[TRAIN] epoch: 270, iter: 19950/30000, loss: 0.0460, lr: 0.000066, batch_cost: 6.7539, reader_cost: 6.41620, ips: 9.4761 samples/sec | ETA 18:51:16
+2022-03-08 17:06:44 [INFO]	[TRAIN] epoch: 271, iter: 20000/30000, loss: 0.0447, lr: 0.000066, batch_cost: 6.9616, reader_cost: 6.62434, ips: 9.1933 samples/sec | ETA 19:20:16
+2022-03-08 17:06:44 [INFO]	Start evaluating (total_samples: 949, total_iters: 949)...
+949/949 [==============================] - 81s 86ms/step - batch_cost: 0.0856 - reader cost: 0.06
+2022-03-08 17:08:05 [INFO]	[EVAL] #Images: 949 mIoU: 0.8545 Acc: 0.9447 Kappa: 0.8394 Dice: 0.9197
+2022-03-08 17:08:05 [INFO]	[EVAL] Class IoU: 
+[0.9315 0.7776]
+2022-03-08 17:08:05 [INFO]	[EVAL] Class Acc: 
+[0.9673 0.866 ]
+2022-03-08 17:08:05 [INFO]	[EVAL] The model with the best validation mIoU (0.8545) was saved at iter 20000.

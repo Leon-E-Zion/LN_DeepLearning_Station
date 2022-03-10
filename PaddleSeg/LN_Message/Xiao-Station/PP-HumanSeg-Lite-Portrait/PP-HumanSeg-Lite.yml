@@ -1,0 +1,61 @@
+batch_size: 64
+iters: 30000
+
+train_dataset:
+  type: Dataset
+  dataset_root: humanseg
+  train_path: humanseg/train_list.txt
+  num_classes: 2
+  transforms:
+    - type: Resize
+      target_size: [512,512]
+    - type: RandomHorizontalFlip
+    - type: RandomDistort
+      brightness_range: 0.4
+      contrast_range: 0.4
+      saturation_range: 0.4
+    - type: Normalize
+  mode: train
+
+val_dataset:
+  type: Dataset
+  dataset_root: humanseg
+  val_path: humanseg/val_list.txt
+  num_classes: 2
+  transforms:
+    - type: Resize
+      target_size: [512,512]
+    - type: Normalize
+  mode: val
+
+export:
+  transforms:
+    - type: Resize
+      target_size: [512,512]
+    - type: Normalize
+
+
+optimizer:
+  type: sgd
+  momentum: 0.9
+  weight_decay: 0.0005
+
+lr_scheduler:
+  type: ReduceOnPlateau
+  learning_rate: 0.04
+  mode: 'min'
+  factor: 0.4
+  patience: 1500
+  threshold_mode: 'rel'
+  verbose: True
+
+loss:
+  types:
+    - type: CrossEntropyLoss
+  coef: [1]
+
+model:
+  type: PPHumanSegLite
+  align_corners: False
+  num_classes: 2
+  pretrained: pretrained_model/pphumanseg_lite_portrait_398x224/model.pdparams
